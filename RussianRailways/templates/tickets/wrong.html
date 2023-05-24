@@ -1,0 +1,14 @@
+{% extends 'tickets/base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <title>Ошибочка</title>
+    <link rel="stylesheet" href="{% static 'tickets/css/wrong.css' %}">
+</head>
+<body>
+    <h1>Кто-то купил билет вперёд вас. Выберите пожалуйста новое место в вагоне!</h1>
+    <a href="{% url 'home' %}"><img class="cross" src="{% static 'tickets/img/cross.svg' %}" alt="cross"></a> 
+</body>
+</html>
+{% endblock %}

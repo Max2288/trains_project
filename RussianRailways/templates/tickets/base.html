@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Website</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300">
+ <link rel="stylesheet" href="{% static 'tickets/css/base.css' %}">
+ </head>
+<body>
+    <header>
+        <div class="logo">
+          <a href="{% url 'home' %}"><img src="{% static 'tickets/img/logo_white.png' %}" alt="Logo"></a>
+        </div>
+        <div class="info">
+          <a href="{% url 'home' %}">Пассажирам</a>
+          <a href="{% url 'home' %}">Грузовые перевозки</a>
+          <a href="{% url 'contacts' %}">Контакты</a>
+        </div>
+        <div class="center"></div>
+        {% if request.user.is_authenticated %}
+        <div class="login_sep">
+          <a href="{% url 'profile' %}"><img src="{% static 'tickets/img/person.svg' %}" alt="" style="margin-right: 20px;"></a>
+        </div>
+        {% else %} 
+          <div class="login_sep">
+            <div class="login">
+              <a href="{% url 'login' %}">Вход</a>
+            </div>
+            <a href="{% url 'login' %}"><img src="{% static 'tickets/img/login.svg' %}" alt="" style="margin-right: 20px;"></a>
+          </div>
+        {% endif %}
+        <div class="dropdown">
+          <a href="#" class="language">Rus<i class="fa fa-chevron-down" style="font-size:8px; margin-left: 5px;"></i></a>
+          <div class="dropdown-content">
+            <a href="#">Eng</a>
+          </div>
+        </div>
+        <img src="{% static 'tickets/img/search-rounded.svg' %}" alt="" style="margin-right: 20px;">
+
+      </header>
+    {% block content %}
+
+    {% endblock%}
+
+  <footer>
+    <p>&copy; 2023 My Website. All rights reserved.</p>
+  </footer>
+</body>

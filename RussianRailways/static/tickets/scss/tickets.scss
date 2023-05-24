@@ -1,0 +1,72 @@
+$bgRadius: 10px;
+
+body{
+    background: #f2f3ee;
+    text-align: center;
+    font-family: Poppins-Regular,sans-serif;
+}
+
+.ticket_window{
+    margin-top: 30px;
+    display: flex;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: content-box;
+    flex-direction: column;
+    width:900px;
+    height: 300px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, .1);
+    border: none;
+    margin-bottom: 20px;
+    columns: 1;
+    border-radius: $bgRadius;
+    background-color: #fff;
+    .choose-btn{
+        border-radius: 8px;
+        border: none;
+        width: 150px;
+        height: 30px;
+        color: #fff;
+        background-color: #e80032;
+    }
+    .choose-btn:hover{
+        background-color: #333;
+    }
+    .route_names{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        margin-bottom: 10px;
+        p{
+            padding: 10px;
+            text-transform: uppercase;
+        }
+        .tssn{
+            color: #00a4a6;
+        }
+        .tesn{
+            color: #e80032;
+            margin-right: 65%;
+        }
+        .minus{
+            width: 6%;
+            height: 40%;
+            margin-top: 2%;
+        }
+    }
+    .user_route{
+        display: flex;
+        box-sizing: content-box;
+        flex-direction: row;
+        .part{
+            margin: 20px;
+        }
+    }
+}
+
+
+.exception{
+    color: #e80032;
+    margin-top: 200px;
+}

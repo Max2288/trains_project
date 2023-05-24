@@ -1,0 +1,88 @@
+body {
+  background: #f2f3ee;
+  text-align: center;
+  font-family: Poppins-Regular, sans-serif;
+}
+
+.ticket_window {
+  margin-top: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 900px;
+  height: 300px;
+  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+  border: none;
+  margin-bottom: 20px;
+  -webkit-columns: 1;
+     -moz-columns: 1;
+          columns: 1;
+  border-radius: 10px;
+  background-color: #fff;
+}
+.ticket_window .choose-btn {
+  border-radius: 8px;
+  border: none;
+  width: 150px;
+  height: 30px;
+  color: #fff;
+  background-color: #e80032;
+}
+.ticket_window .choose-btn:hover {
+  background-color: #333;
+}
+.ticket_window .route_names {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.ticket_window .route_names p {
+  padding: 10px;
+  text-transform: uppercase;
+}
+.ticket_window .route_names .tssn {
+  color: #00a4a6;
+}
+.ticket_window .route_names .tesn {
+  color: #e80032;
+  margin-right: 65%;
+}
+.ticket_window .route_names .minus {
+  width: 6%;
+  height: 40%;
+  margin-top: 2%;
+}
+.ticket_window .user_route {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+.ticket_window .user_route .part {
+  margin: 20px;
+}
+
+.exception {
+  color: #e80032;
+  margin-top: 200px;
+}

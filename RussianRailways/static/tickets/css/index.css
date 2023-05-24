@@ -1,0 +1,147 @@
+body {
+    background-color: #F2F3EE;
+  }
+  
+  .main-sect {
+    background-image: url(../img/2.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 300px;
+  }
+  
+  .widget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  .widget-text{
+    display: flex;
+    justify-content: space-between;
+    position: relative; 
+    top: 40px;
+    left: -300px;
+    font-family: "RussianRail_G_Pro","Arial",sans-serif;
+  }
+
+  .widget-text p {
+    text-transform: uppercase;
+    font-size: 25px;
+    color: #F2F3EE;
+    font-weight: bold;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5); /* Text shadow effect */
+  }
+  
+
+  
+
+  .widget-inputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-top: 80px;
+  }
+  
+  #swap-cities-btn {
+    position: absolute;
+    left: calc(20% + 0px);
+    z-index: 999;
+  }
+  
+  #swap-dates-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: calc(40% - 9px);
+    z-index: 999;
+  }
+  
+  
+  .widget-inputs input[type="text"],
+  .widget-inputs input[type="date"] {
+    padding: 20px;
+    border: none;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+    width: 200px;
+    position: relative; /* add position relative */
+    z-index: 1; /* add z-index */
+  }
+  
+  .swap {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-image: url(../img/swap-horizontal.svg);
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    position: absolute; /* add position absolute */
+  }
+  
+.swap-dates{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-image: url(../img/minus.svg);
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    position: absolute; /* add position absolute */
+    top: 50%; /* align to the center vertically */
+    transform: translateY(-50%); /* adjust vertical position */
+}
+
+.find-routes{
+  height: 55px; 
+  width: 200px; 
+  background-color: #e80032; 
+  color: #F2F3EE; 
+  border: none;
+}
+
+
+.swap-city-label{
+  position: absolute; 
+  height: 20px; 
+  width:20px; 
+  background-color: #fff; 
+  transform: translateY(-50%); 
+  left: calc(20% - 5px); 
+  z-index: 999; 
+  top: 50%;
+}
+
+.swap-dates-label{
+  position: absolute; 
+  height: 20px; 
+  width:20px; 
+  background-color: #fff; 
+  transform: translateY(-50%); 
+  right: calc(40% - 33px);
+  z-index: 999; 
+  top: 50%;
+}
+
+.rotate {
+  animation: rotate-180 0.3s ease-in-out;
+  -webkit-animation: rotate-180 0.3s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  animation-fill-mode: forwards;
+
+}
+
+.roll{
+  animation: roll .5s;
+}
+
+
+@keyframes roll {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}

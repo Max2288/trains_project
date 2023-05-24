@@ -1,0 +1,57 @@
+{% extends 'tickets/base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'tickets/css/seats.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-sect">
+        <div class="local-header">
+            <a onclick="javascript:history.back(); return false;"><img src="{% static 'tickets/img/left-arrow.png' %}" alt=""></a>
+            <ul>
+                <li class="red-white">1</li>
+                <div class="sep-li-red-white"></div>
+                <li class="red">2</li>
+                <div class="sep-li"></div>
+                <li>3</li>
+                <div class="sep-li"></div>
+                <li>4</li>
+            </ul>
+            <p>Выберите класс обслуживания</p>
+        </div>
+        <img src={{ image }} alt="">
+        <form id="seat-form" method="post" action="{% url 'ps_inf' %}?route={{ request.GET.route }}&departure_station={{ request.GET.departure_station }}&arrival_station={{ request.GET.arrival_station }}&seat_type={{ request.GET.seat_type }}">
+            {% csrf_token %}
+            <div class="main-chooses">
+                <select name="select" id="select">
+                    {% for seat in seats %}
+                    <option value="{{ seat }}">{{ seat }}</option>
+                    {% endfor %}
+                </select>
+                <button class="choose-btn" type="submit">Выбрать</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        const form = document.getElementById('seat-form');
+        const selectElement = document.querySelector("select");
+        let selected = Array.from(select.options).filter(option => option.selected).map(option => option.value);
+        let queryParam = `&seat=${selected}`;
+        let actionUrl = form.getAttribute('action');
+        selectElement.addEventListener("change", (event) => {
+            selected = event.target.value;
+            console.log(selected);
+            queryParam = `&seat=${selected}`;
+            console.log(queryParam);
+            form.setAttribute('action', actionUrl + queryParam);
+          });
+        form.setAttribute('action', actionUrl + queryParam);
+    </script>
+</body>
+</html>
+
+{% endblock %}

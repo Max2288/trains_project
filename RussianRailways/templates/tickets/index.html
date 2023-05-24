@@ -1,0 +1,46 @@
+{% extends 'tickets/base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'tickets/css/index.css' %}">
+</head>
+<section>
+
+  <form method="get" action="{% url 'tickets' %}">
+    <div class="main-sect">
+      <div class="widget">
+        <div class="widget-text">
+          <p>Купить билет, посмотреть расписание</p>
+        </div>
+        <div class="widget-inputs">
+          {{ form.departure_city }}
+          <label for="dep_" class="swap-city-label"> 
+            <button type="button" class="swap" id="swap-cities-btn"></button>
+          </label>
+          {{ form.arrival_city }}
+          {{ form.departure_date }}
+          <label for="arr_" class="swap-dates-label"> 
+            <button type="button" class="swap-dates" id="swap-dates-btn"></button>
+          </label>
+          {{ form.arrival_date }} 
+          <button type="submit" class="find-routes" id="find-routes">Найти</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+  
+<script>
+  const swapButton = document.getElementById('swap-cities-btn');
+const cityInputs = document.querySelectorAll('.widget-inputs input[type="text"]');
+swapButton.addEventListener('click', function() {
+  cityInputs[0].value = [cityInputs[1].value, cityInputs[1].value = cityInputs[0].value][0];
+  swapButton.classList.add('roll');
+  setTimeout(function() {
+    swapButton.classList.remove('roll');
+  }, 500);
+
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'tickets/base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="utf-8">
+    <title>Успех</title>
+    <link rel="stylesheet" href="{% static 'tickets/css/successfull.css' %}">
+</head>
+<body>
+    <h1>Билет успешно куплен!</h1>
+    <a href="{% url 'home' %}"><img class="cross" src="{% static 'tickets/img/galochka.png' %}" alt="cross"></a> 
+</body>
+</html>
+
+{% endblock %}

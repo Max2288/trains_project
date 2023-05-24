@@ -1,0 +1,21 @@
+{% extends 'tickets/base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <title>Покупка</title>
+    <link rel="stylesheet" href="{% static 'tickets/css/buy-ticket.css' %}">
+</head>
+<body>
+    <div class="main-sect">
+        <h3>Вы выбрали:</h3>
+        <p>Станция отправления: {{ departure_station }}</p>
+        <p>Станция прибытия: {{ arrival_station }}</p>
+        <p>Тип вагона: {{ seat_type }}</p>
+        <p>Номер места: {{ seat }}</p>
+        <form method="post" action="{% url 'finally_purchase' %}?route={{ request.GET.route }}&departure_station={{ request.GET.departure_station }}&arrival_station={{ request.GET.arrival_station }}&seat_type={{ request.GET.seat_type }}&seat={{ request.GET.seat }}">
+            {% csrf_token %}
+            <button class="choose-btn" type="submit">Купить</button>
+        </form>
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'tickets/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'tickets/css/passanger-info.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-sect">
+        {% if request.user.is_authenticated %}
+        <form method="post" action="{% url 'buy_ticket' %}?route={{ request.GET.route }}&departure_station={{ request.GET.departure_station }}&arrival_station={{ request.GET.arrival_station }}&seat_type={{ request.GET.seat_type }}&seat={{ request.GET.seat }}">
+            {% csrf_token %}
+            <h2>Проверьте правильность ваших данных!</h1>
+            <h3>В случае ошибки свяжитесь с тех поддержкой!</h3>
+            <div class="profile-block">
+                <p>Фамилия: {{ passenger.user.last_name }}</p>
+                <p>Имя: {{ passenger.user.first_name }}</p>
+                <p>Отчество: {{ passenger.patronymic }}</p>
+                <p>Почта: {{ passenger.user.email }}</p>
+                <p>Телефон: {{ passenger.phone_number }}</p>
+                <p>Пасспортные данные: {{ passenger.passport_data }}</p>
+            </div>
+            <button class="choose-btn" type="submit">Подтвердить</button>
+        </form>
+    {% else %} 
+        <h1>Для продолжения войдите в систему!</h1>
+    {% endif %}
+    </div>
+</body>
+</html>
+{% endblock %}

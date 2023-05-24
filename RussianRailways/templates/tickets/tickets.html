@@ -1,0 +1,41 @@
+{% extends 'tickets/base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    <title>Tickets</title>
+    <link rel="stylesheet" href="{% static 'tickets/css/tickets.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300">
+</head>
+
+<body>
+    {% if tickets %}
+    {% for ticket in tickets %}
+    <label class="ticket_window" for="ticket">
+        <div class="route_names">
+            <p class="tssn">{{ ticket.start_station_name }}</p>
+            <img class="minus" src="{% static 'tickets/img/minus.svg' %}" alt="minus">
+            <p class="tesn">{{ ticket.end_station_name }}</p>
+        </div>
+        <div class="user_route">
+            <div class="part">
+                <h3>{{ ticket.departure_datetime }}</h3>
+                <p>{{ ticket.departure_station_name }}</p>
+            </div>
+            <div class="part">
+                <h3>{{ ticket.arrival_datetime }}</h3>
+                <p>{{ ticket.arrival_station_name }}</p>
+            </div>
+        </div>
+        <div>
+            <button class="choose-btn" type="submit"
+                onclick="location.href='{% url 'trip' %}?route={{ ticket.route_id }}&departure_station={{ ticket.departure_station_name }}&arrival_station={{ ticket.arrival_station_name }}';">Купить
+                билет</button>
+        </div>
+    </label>
+    {% endfor %}
+    {% else %}
+    <h1 class="exception">Нет билетов на выбранную дату или маршрут! </h1>
+    {% endif %}
+</body>
+{% endblock %}

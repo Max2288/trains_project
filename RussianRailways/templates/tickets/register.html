@@ -1,0 +1,77 @@
+{% extends 'tickets/base.html' %}
+{% load static %}
+{% block content %}
+<head>
+  <link rel="stylesheet" href="{% static 'tickets/css/register.css' %}">
+</head>
+<div class="register-container">
+  <form class="register-form" action="{% url 'register' %}" method="POST">
+    {% csrf_token %}
+    <h1>Регистрация</h1>
+    <div class="form-group">
+      <label for="username">Имя пользователя:</label>
+      <input type="text" id="username" name="username" required>
+      {% for error in form.username.errors %}
+      <div class="error">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <label for="first_name">Имя:</label>
+      <input type="text" id="first_name" name="first_name" required>
+      {% for error in form.first_name.errors %}
+      <div class="error">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <label for="surname">Фамилия:</label>
+      <input type="text" id="surname" name="surname" required>
+      {% for error in form.surname.errors %}
+      <div class="error">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <label for="patronymic">Отчество:</label>
+      <input type="text" id="patronymic" name="patronymic" required>
+      {% for error in form.patronymic.errors %}
+      <div class="error">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      {% for error in form.email.errors %}
+      <div class="error">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <label for="number">Телефон:</label>
+      <input type="text" id="number" name="number" required>
+      {% for error in form.number.errors %}
+      <div class="error">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <label for="passport_data">Паспортные данные:</label>
+      <input type="text" id="passport_data" name="passport_data" required>
+      {% for error in form.passport_data.errors %}
+      <div class="error">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <label for="password">Пароль:</label>
+      <input type="password" id="id_password1" name="password1" required>
+      {% for error in form.password1.errors %}
+      <div class="error">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <div class="form-group">
+      <label for="confirm_password">Подтвердите пароль:</label>
+      <input type="password" id="id_password2" name="password2" required>
+      {% for error in form.password2.errors %}
+      <div class="error">{{ error }}</div>
+      {% endfor %}
+    </div>
+    <button type="submit">Зарегистрироваться</button>
+  </form>
+</div>
+{% endblock %}

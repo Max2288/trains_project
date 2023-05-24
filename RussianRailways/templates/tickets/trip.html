@@ -1,0 +1,206 @@
+{% extends 'tickets/base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <title>Train Seat Selection</title>
+    <link rel="stylesheet" href="{% static 'tickets/css/trip.css' %}">
+</head>
+
+<body>
+    <div class="main-sect">
+        <form id="seat-form" method="post"
+            action="{% url 'seats' %}?route={{ request.GET.route }}&departure_station={{ request.GET.departure_station }}&arrival_station={{ request.GET.arrival_station }}">
+            {% csrf_token %}
+            <div class="local-header">
+                <a onclick="javascript:history.back(); return false;"><img src="{% static 'tickets/img/left-arrow.png' %}" alt=""></a>
+                <ul>
+                    <li class="red">1</li>
+                    <div class="sep-li"></div>
+                    <li>2</li>
+                    <div class="sep-li"></div>
+                    <li>3</li>
+                    <div class="sep-li"></div>
+                    <li>4</li>
+                </ul>
+                <p>Выберите класс обслуживания</p>
+            </div>
+            {% for field in form %}
+            <div class="form-field">
+                <div class="inp-txt">
+                    <input type="radio" name="seat_type" id="{{ field.html_name }}" value="{{ field.value }}">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {% if field.label == 'Купе' %}
+                    <div class="right-part">
+                        <div class="left-of-right">
+                            <p>Класс 2Т</p>
+                            <p><strong>25</strong> мест</p>
+                        </div>
+                        <div class="right-of-right">
+                            <div class="icons">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                            </div>
+                            <p>Вагон повышенной комфортности. 4-местные купе. Кондиционер, биотуалет в вагоне. Провоз животных запрещен.</p>
+                        </div>
+                    </div>
+                    <div class="right-part">
+                        <div class="left-of-right">
+                            <p>Класс 3Э</p>
+                            <p><strong>25</strong> мест</p>
+                        </div>
+                        <div class="right-of-right">
+                            <div class="icons">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                            </div>
+                            <p>Вагон повышенной комфортности. Кондиционер, биотуалет в вагоне. Вагон с услугой перевозки животных.</p>
+                        </div>
+                    </div>
+
+                    {% elif field.label == 'Плацкарт' %}
+                    <div class="right-part">
+                        <div class="left-of-right">
+                            <p>Класс 3Б</p>
+                            <p><strong>25</strong> мест</p>
+                        </div>
+                        <div class="right-of-right">
+                            <div class="icons">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                            </div>
+                            <p>Вагон открытого типа(плацкартный). Кондиционер и биотуалет в вагоне. Вагон с услугой
+                                перевозки животных.</p>
+                        </div>
+                    </div>
+                    <div class="right-part">
+                        <div class="left-of-right">
+                            <p>Класс 3Э</p>
+                            <p><strong>25</strong> мест</p>
+                        </div>
+                        <div class="right-of-right">
+                            <div class="icons">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                            </div>
+                            <p>Кондиционер, биотуалет в вагоне.</p>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="right-part">
+                        <div class="left-of-right">
+                            <p>Класс 1Э</p>
+                            <p><strong>25</strong> мест</p>
+                        </div>
+                        <div class="right-of-right">
+                            <div class="icons">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                            </div>
+                            <p>Вагон повышенной комфортности (санитарно-гигиенический набор, пресса, белье). Кондиционер, биотуалет в вагоне. Вагон с услугой перевозки животных.</p>
+                        </div>
+                    </div>
+                    <div class="right-part">
+                        <div class="left-of-right">
+                            <p>Класс 1Э</p>
+                            <p><strong>25</strong> мест</p>
+                        </div>
+                        <div class="right-of-right">
+                            <div class="icons">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                                <img src="{% static 'tickets/img/cup.svg' %}" alt="">
+                            </div>
+                            <p>Вагон повышенной комфортности (санитарно-гигиенический набор, пресса, белье). Кондиционер, биотуалет в вагоне. Вагон с услугой перевозки животных.</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+
+
+            <button class="choose-btn" type="submit">Выбрать</button>
+        </form>
+    </div>
+    <script>
+        window.onload = function () {
+            const form = document.getElementById('seat-form');
+            const radios = form.querySelectorAll('input');
+            const chooseBtn = document.querySelector('.choose-btn');
+            let selectedValues = [];
+            const chooseDict = {
+              "seat_type_sv": 'СВ',
+              "seat_type_platzkart": 'Плацкарт',
+              "seat_type_kupe": 'Купе'
+            };
+            const chooseDictSecond = {
+              "СВ": 'seat_type_sv',
+              "Плацкарт": 'seat_type_platzkart',
+              "Купе": 'seat_type_kupe'
+            };
+          
+            radios.forEach(function (radio) {
+              radio.addEventListener('change', function () {
+                if (this.checked) {
+                  var formField = this.closest('.form-field');
+                  console.log(selectedValues.length);
+                  if (selectedValues.length != 0) {
+                    var elementIndex = selectedValues.length - 1;
+                    var element = selectedValues[elementIndex];
+                    console.log(element);
+                    var elementId = chooseDictSecond[element];
+                    var elementForm = document.getElementById(elementId);
+                    if (elementForm) {
+                      elementForm = elementForm.closest('.form-field');
+                      console.log(elementForm);
+                      elementForm.classList.remove('bordered');
+                    }
+                    selectedValues.splice(elementIndex, 1);
+                  }
+                  selectedValues.push(chooseDict[this.id]);
+                  formField.classList.add('bordered');
+                }
+              });
+            });
+          
+          
+
+
+            chooseBtn.addEventListener('click', function (event) {
+                event.preventDefault();
+
+                if (selectedValues.length === 1) {
+                    const actionUrl = form.getAttribute('action');
+                    const queryParam = `&seat_type=${selectedValues[0]}`;
+                    form.setAttribute('action', actionUrl + queryParam);
+                    form.submit();
+                } else if (selectedValues.length === 0) {
+                    alert('Пожалуйста, выберите один вариант!');
+                }
+            });
+        };
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>
+
+{% endblock %}
