@@ -1,6 +1,7 @@
 {% extends 'tickets/base.html' %}
 {% load static %}
 {% block content %}
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +9,12 @@
     <link rel="stylesheet" href="{% static 'tickets/css/seats.css' %}">
     <title>Document</title>
 </head>
+
 <body>
     <div class="main-sect">
         <div class="local-header">
-            <a onclick="javascript:history.back(); return false;"><img src="{% static 'tickets/img/left-arrow.png' %}" alt=""></a>
+            <a onclick="javascript:history.back(); return false;"><img src="{% static 'tickets/img/left-arrow.png' %}"
+                    alt=""></a>
             <ul>
                 <li class="red-white">1</li>
                 <div class="sep-li-red-white"></div>
@@ -23,35 +26,49 @@
             </ul>
             <p>Выберите класс обслуживания</p>
         </div>
-        <img src={{ image }} alt="">
-        <form id="seat-form" method="post" action="{% url 'ps_inf' %}?route={{ request.GET.route }}&departure_station={{ request.GET.departure_station }}&arrival_station={{ request.GET.arrival_station }}&seat_type={{ request.GET.seat_type }}">
+        <form id="seat-form" method="post"
+            action="{% url 'ps_inf' %}?route={{ request.GET.route }}&departure_station={{ request.GET.departure_station }}&arrival_station={{ request.GET.arrival_station }}&seat_type={{ request.GET.seat_type }}">
             {% csrf_token %}
             <div class="main-chooses">
-                <select name="select" id="select">
-                    {% for seat in seats %}
-                    <option value="{{ seat }}">{{ seat }}</option>
-                    {% endfor %}
-                </select>
+                <img style="margin-bottom: 10px;" src={{ image }} alt="">
+                {% for seat in seats %}
+                <label for="{{ seat }}">
+                    <p>Место {{seat}}</p>
+                    <input class="checkoption" type="checkbox" value="{{ seat }}">
+                </label>
+                {% endfor %}
                 <button class="choose-btn" type="submit">Выбрать</button>
             </div>
         </form>
     </div>
     <script>
+        
         const form = document.getElementById('seat-form');
-        const selectElement = document.querySelector("select");
+        const selectElement = document.getElementsByClassName("checkoption");
         let selected = Array.from(select.options).filter(option => option.selected).map(option => option.value);
+        
         let queryParam = `&seat=${selected}`;
         let actionUrl = form.getAttribute('action');
         selectElement.addEventListener("change", (event) => {
+            console.log(1)
             selected = event.target.value;
-            console.log(selected);
             queryParam = `&seat=${selected}`;
             console.log(queryParam);
             form.setAttribute('action', actionUrl + queryParam);
-          });
+        });
         form.setAttribute('action', actionUrl + queryParam);
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.checkoption').click(function() {
+               $('.checkoption').not(this).prop('checked', false);
+            });
+      
+         });
+    </script>
 </body>
+
 </html>
 
 {% endblock %}

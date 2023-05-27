@@ -91,6 +91,7 @@ body {
   margin-top: 30px;
 }
 .main-sect .main-chooses {
+  width: 1000px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -98,17 +99,22 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  background-color: #fff;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: auto;
 }
-.main-sect .main-chooses select {
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 300px;
-  border-radius: 8px;
-  border: none;
-  height: 30px;
-  background-color: #ddd;
-  color: #333;
+.main-sect .main-chooses label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: #fff;
+  width: 100%;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.1);
+          box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.1);
 }
 .main-sect .main-chooses .choose-btn {
   margin-left: auto;

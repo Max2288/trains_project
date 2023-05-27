@@ -37,10 +37,9 @@ body {
                 width: 25px;
                 height: 25px;
                 display: flex;
-                align-items: center; 
+                align-items: center;
                 justify-content: center;
                 color: #fff;
-                
             }
         }
         .sep-li {
@@ -110,6 +109,9 @@ body {
         .right-part:last-child {
             border-bottom: none;
         }
+    }
+    .form-field:hover{
+        box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.1);
     }
     .choose-btn {
         margin-top: 30px;
