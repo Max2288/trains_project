@@ -12,6 +12,8 @@ from rest_framework import permissions, viewsets, parsers, status as status_code
 from rest_framework.response import Response
 from django.db import models
 from datetime import datetime
+import requests
+from . import config
 
 
 @csrf_protect
@@ -102,22 +104,38 @@ def finally_purchase(request):
             )
             for orders in range(departure_station.order, arrival_station.order+1):
                 route_part = RoutePart.objects.get(order=orders, route_uuid=route)
-                Ticket.objects.create(
+                ticket = Ticket.objects.create(
                     route_part=route_part,
                     railway_carriage_info_uuid=carrige,
                     seat_number=int(seat),
-                    is_booked=True,
+                    status='Booked',
                     human_ticket=human_ticket
                 )
-                human_ticket.price+= 200
+                human_ticket.price += 200
                 human_ticket.save()
-        return redirect('succsessfull')
+
+        response = requests.post(
+            url=config.BOOST_URL,
+            headers=config.BOOST_HEADERS,
+            json={
+                'recipient': config.BOOST_ACCOUNT,
+                'amount': human_ticket.price,
+                'callback':
+                    {
+                        'redirect': config.STATIC_THANKS,
+                        'url': config.BOOST_CALLBACK_URL.format(id=ticket.id),
+                        'headers': config.BOOST_CALLBACK_HEADERS
+                    }
+                }
+            )
+        id = response.json().get('id')
+        return redirect(config.BOOST_REDIRECT.format(id=id))
 
 def wrong(request):
     return render(request, 'tickets/wrong.html')
 
-def succsessfull(request):
-    return render(request, 'tickets/succsessfull.html')   
+def succesessful(request):
+    return render(request, 'tickets/succesessful.html')   
 
 def tickets(request):
     departure_city = request.GET.get('departure_city')

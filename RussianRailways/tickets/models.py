@@ -193,6 +193,13 @@ class RoutePart(UUIDMixin):
         db_table = 'route_part'
 
 
+ticket_statues = (
+    ('Booked', 'Booked'),
+    ('Confirmed', 'Confirmed'),
+    ('Cancelled', 'Cancelled')
+)
+
+
 class Ticket(UUIDMixin):
     route_part = models.ForeignKey(RoutePart, models.DO_NOTHING)
     railway_carriage_info_uuid = models.ForeignKey(
@@ -201,7 +208,7 @@ class Ticket(UUIDMixin):
         db_column='railway_carriage_info_uuid'
     )
     seat_number = models.IntegerField(validators=[validate_seat_number])
-    is_booked = models.BooleanField()
+    status = models.CharField(choices=ticket_statues, default='Booked', blank=True, null=False, max_length=10)
     human_ticket = models.ForeignKey(
         HumanTicket,
         models.DO_NOTHING,
