@@ -79,7 +79,7 @@ class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
         fields = ['id', 'route_part', 'railway_carriage_info_uuid',
-                  'seat_number', 'is_booked', 'human_ticket']
+                  'seat_number', 'status', 'human_ticket']
 
 
 class UserSerializer(serializers.ModelSerializer):

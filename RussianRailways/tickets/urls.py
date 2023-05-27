@@ -27,7 +27,7 @@ urlpatterns = [
     path('trip/boarding', views.passenger_info, name='ps_inf'),
     path('trip/buy', views.buy_ticket, name='buy_ticket'),
     path('finally_bought', views.finally_purchase, name='finally_purchase'),
-    path('successful', views.succsessfull, name='succsessfull'),
+    path('succesessful', views.succesessful, name='succesessful'),
     path('wrong', views.wrong, name='wrong'),
     path('rest/', include(router.urls)),
 ] 
