@@ -116,7 +116,7 @@ RailwayCarriageTests = create_viewset_tests(
     },
     {
         "type": "Плацкарт",
-        "number_of_seats": 40,
+        "number_of_seats": 39,
         "seating_plan": "test3"
     }
 )

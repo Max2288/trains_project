@@ -25,6 +25,7 @@ body {
   margin-bottom: 20px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: -12px;
   height: 150px;
 }
 .main-sect .local-header img {
@@ -130,4 +131,12 @@ body {
 }
 .main-sect .main-chooses .choose-btn:hover {
   background-color: #333;
+}
+.main-sect .main-chooses label:hover {
+  -webkit-box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.1);
+          box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bordered {
+  border: 2px solid #e80032;
 }

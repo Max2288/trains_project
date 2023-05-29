@@ -101,10 +101,10 @@ RAILWAY_CARRIDGE_PRICES = {
 }
 
 ####BOOST BANK
-BOOST_URL = 'http://127.0.0.1:5000/rest/bill/'
-BOOST_HEADERS = {'Authorization': 'Token f9421ebf48a19af28218ccea179bb5ae47a82af9'}
-BOOST_REDIRECT = 'http://127.0.0.1:5000/payment/{id}'
-BOOST_ACCOUNT = '00ab34de-41a3-4195-8761-d135bd57e5dd'
-STATIC_THANKS = 'http://127.0.0.1:8000/succesessful'
-BOOST_CALLBACK_URL = 'http://127.0.0.1:8000/rest/Ticket/{id}/'
-BOOST_CALLBACK_HEADERS = {'Authorization': 'Token 9c103b950d4f16866ee35e00cf4c6a79af0a5209'}
+BOOST_URL = 'https://boostbank.ru/rest/bill/'
+BOOST_HEADERS = {'Authorization': 'Token 0d48ba53e2d7a25e45dc65e6bd2e3a115fbceb28'}
+BOOST_REDIRECT = 'https://boostbank.ru/payment/{id}'
+BOOST_ACCOUNT = '8ac00fe9-95f2-4234-a3cf-941dff8189f7'
+STATIC_THANKS = 'http://10.82.57.67:8000/succesessful'
+BOOST_CALLBACK_URL = 'http://10.82.57.67:8000/rest/Ticket/{id}/'
+BOOST_CALLBACK_HEADERS = {'Authorization': 'Token 8e96eaa3ff8510d4b5183742868ccb518971d040'}

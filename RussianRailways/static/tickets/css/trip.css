@@ -30,7 +30,7 @@ body {
   width: 25px;
   float: left;
   margin-left: 30px;
-  margin-top: 20px;
+  margin-top: 37px;
 }
 .main-sect .local-header ul {
   display: -webkit-box;
@@ -42,7 +42,7 @@ body {
   background-color: #e80032;
 }
 .main-sect .local-header ul li {
-  margin-top: 20px;
+  margin-top: 37px;
   margin-right: 5px;
   list-style-type: none;
   border-radius: 50%;
@@ -61,7 +61,7 @@ body {
   color: #fff;
 }
 .main-sect .local-header .sep-li {
-  margin-top: 30px;
+  margin-top: 47px;
   margin-left: -5px;
   width: 5px;
   height: 2px;

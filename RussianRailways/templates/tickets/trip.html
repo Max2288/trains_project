@@ -151,21 +151,17 @@
               "Плацкарт": 'seat_type_platzkart',
               "Купе": 'seat_type_kupe'
             };
-          
             radios.forEach(function (radio) {
               radio.addEventListener('change', function () {
                 if (this.checked) {
                   var formField = this.closest('.form-field');
-                  console.log(selectedValues.length);
                   if (selectedValues.length != 0) {
                     var elementIndex = selectedValues.length - 1;
                     var element = selectedValues[elementIndex];
-                    console.log(element);
                     var elementId = chooseDictSecond[element];
                     var elementForm = document.getElementById(elementId);
                     if (elementForm) {
                       elementForm = elementForm.closest('.form-field');
-                      console.log(elementForm);
                       elementForm.classList.remove('bordered');
                     }
                     selectedValues.splice(elementIndex, 1);

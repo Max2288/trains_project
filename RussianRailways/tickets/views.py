@@ -58,10 +58,13 @@ def seats(request):
     )
 
 def passenger_info(request):
-    user = User.objects.get(username=request.user.username)
-    passenger = Passenger.objects.get(user = user)
-    return render(request, 'tickets/passenger_info.html', {'passenger': passenger})
-
+    passanger_dictionary = {}
+    if request.user.is_authenticated:
+        user = User.objects.get(username=request.user.username)
+        passenger = Passenger.objects.get(user = user)
+        passanger_dictionary = {'passenger': passenger}
+    return render(request, 'tickets/passenger_info.html', passanger_dictionary)
+    
 def buy_ticket(request):
     user_dictionary = {
         "departure_station": request.GET['departure_station'],
@@ -113,7 +116,7 @@ def finally_purchase(request):
                 )
                 human_ticket.price += 200
                 human_ticket.save()
-
+        print('---------------------------------------')
         response = requests.post(
             url=config.BOOST_URL,
             headers=config.BOOST_HEADERS,
@@ -129,7 +132,9 @@ def finally_purchase(request):
                 }
             )
         id = response.json().get('id')
+        print(config.BOOST_REDIRECT.format(id=id))
         return redirect(config.BOOST_REDIRECT.format(id=id))
+    return render(request, 'tickets/wrong.html')
 
 def wrong(request):
     return render(request, 'tickets/wrong.html')

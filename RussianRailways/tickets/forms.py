@@ -1,8 +1,9 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 from tickets.models import validate_phone_number, validate_passport_data
+from django.utils import timezone
+
 
 class TicketSearchForm(forms.Form):
     departure_city = forms.CharField(
@@ -18,12 +19,12 @@ class TicketSearchForm(forms.Form):
     departure_date = forms.DateField(
         label='Туда',
         required=True,
-        widget=forms.DateInput(attrs={'placeholder': 'Туда', 'onfocus': "(this.type='date')", 'onblur': "(this.type='text')"})
+        widget=forms.DateInput(attrs={'placeholder': 'Туда', 'onfocus': "(this.type='date')", 'onblur': "(this.type='text')", 'min': timezone.now().strftime('%Y-%m-%d')})
     )
     arrival_date = forms.DateField(
         label='Обратно',
         required=False,
-        widget=forms.DateInput(attrs={'placeholder': 'Обратно', 'onfocus': "(this.type='date')", 'onblur': "(this.type='text')"})
+        widget=forms.DateInput(attrs={'placeholder': 'Обратно', 'onfocus': "(this.type='date')", 'onblur': "(this.type='text')", 'min': timezone.now().strftime('%Y-%m-%d')})
     )
 
 

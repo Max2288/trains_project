@@ -24,7 +24,7 @@
                 <div class="sep-li"></div>
                 <li>4</li>
             </ul>
-            <p>Выберите класс обслуживания</p>
+            <p>Выберите место в вагоне</p>
         </div>
         <form id="seat-form" method="post"
             action="{% url 'ps_inf' %}?route={{ request.GET.route }}&departure_station={{ request.GET.departure_station }}&arrival_station={{ request.GET.arrival_station }}&seat_type={{ request.GET.seat_type }}">
@@ -42,30 +42,44 @@
         </form>
     </div>
     <script>
-        
         const form = document.getElementById('seat-form');
-        const selectElement = document.getElementsByClassName("checkoption");
-        let selected = Array.from(select.options).filter(option => option.selected).map(option => option.value);
-        
-        let queryParam = `&seat=${selected}`;
+        const selectElements = document.getElementsByClassName("checkoption");
         let actionUrl = form.getAttribute('action');
-        selectElement.addEventListener("change", (event) => {
-            console.log(1)
-            selected = event.target.value;
-            queryParam = `&seat=${selected}`;
-            console.log(queryParam);
-            form.setAttribute('action', actionUrl + queryParam);
+        const arr = [];
+        for (let i = 0; i < selectElements.length; i++) {
+            selectElements[i].addEventListener("change", () => {
+                if (arr.length === 1){
+                    field = arr.pop(0)
+                    field.classList.remove('bordered');
+                }
+                var formField = selectElements[i].closest('label');
+                let selectedSeats = Array.from(selectElements).filter(option => option.checked).map(option => option.value);
+                let queryParam = `&seat=${selectedSeats.join(',')}`;
+                form.setAttribute('action', actionUrl + queryParam);
+                formField.classList.add('bordered');
+                arr.push(formField);
+            });
+        }
+    
+        form.addEventListener("submit", (event) => {
+            let selectedSeats = Array.from(selectElements).filter(option => option.checked).map(option => option.value);
+            if (selectedSeats.length === 0) {
+                event.preventDefault();
+                alert("Выберите место, пожалуйста.");
+            }
         });
-        form.setAttribute('action', actionUrl + queryParam);
     </script>
+    
+    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
-            $('.checkoption').click(function() {
-               $('.checkoption').not(this).prop('checked', false);
+        $(document).ready(function () {
+            $('.checkoption').click(function () {
+                $('.checkoption').not(this).prop('checked', false);
             });
-      
-         });
+
+        });
     </script>
 </body>
 

@@ -1,12 +1,12 @@
 $bgRadius: 10px;
 
-body{
+body {
     background: #f2f3ee;
     text-align: center;
-    font-family: Poppins-Regular,sans-serif;
+    font-family: Poppins-Regular, sans-serif;
 }
 
-.ticket_window{
+.ticket_window {
     margin-top: 30px;
     display: flex;
     position: relative;
@@ -14,15 +14,15 @@ body{
     margin-right: auto;
     box-sizing: content-box;
     flex-direction: column;
-    width:900px;
+    width: 900px;
     height: 300px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, .1);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
     border: none;
     margin-bottom: 20px;
     columns: 1;
     border-radius: $bgRadius;
     background-color: #fff;
-    .choose-btn{
+    .choose-btn {
         border-radius: 8px;
         border: none;
         width: 150px;
@@ -30,43 +30,68 @@ body{
         color: #fff;
         background-color: #e80032;
     }
-    .choose-btn:hover{
+    .choose-btn:hover {
         background-color: #333;
     }
-    .route_names{
+    .route_names {
         display: flex;
         justify-content: space-between;
         padding: 10px;
         margin-bottom: 10px;
-        p{
+        p {
             padding: 10px;
             text-transform: uppercase;
         }
-        .tssn{
+        .tssn {
             color: #00a4a6;
         }
-        .tesn{
+        .tesn {
             color: #e80032;
             margin-right: 65%;
         }
-        .minus{
+        .minus {
             width: 6%;
             height: 40%;
             margin-top: 2%;
         }
     }
-    .user_route{
+    .user_route {
         display: flex;
         box-sizing: content-box;
         flex-direction: row;
-        .part{
+        .part {
             margin: 20px;
         }
     }
 }
 
+.exception {
+    color: #333;
+}
 
-.exception{
-    color: #e80032;
-    margin-top: 200px;
+.error {
+    width: 920px;
+    background-color: #fff;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: auto;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    margin-top: 5%;
+    .error-btn {
+        margin-top: 10px;
+        width: 150px;
+        border-radius: 8px;
+        border: none;
+        height: 30px;
+        font-weight: 16px;
+        color: white;
+        background-color: #e80032;
+        margin: auto;
+    }
+    .error-btn:hover {
+        background-color: #333;
+    }
 }

@@ -35,7 +35,11 @@
     </label>
     {% endfor %}
     {% else %}
-    <h1 class="exception">Нет билетов на выбранную дату или маршрут! </h1>
+    <div class="error">
+        <h1 class="exception">Нет билетов на выбранную дату или маршрут! </h1>
+        <button  onclick="javascript:history.back(); return false;" class="error-btn">Назад</button>
+    </div>
+
     {% endif %}
 </body>
 {% endblock %}

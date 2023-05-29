@@ -1,3 +1,7 @@
+body{
+  background-color: #f2f3ee;
+}
+
 .register-container {
     display: flex;
     justify-content: center;
@@ -12,7 +16,7 @@
     padding: 30px;
     width: 400px;
     position: relative;
-    margin-top: 20%;
+    margin-top: 5%;
   }
   
   .register-form h1 {

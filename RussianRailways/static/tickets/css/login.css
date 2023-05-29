@@ -1,3 +1,7 @@
+body{
+    background-color: #f2f3ee;
+}
+
 .login-block{
     display: flex;
     justify-content: center;
