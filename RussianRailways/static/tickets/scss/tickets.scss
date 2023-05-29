@@ -24,7 +24,7 @@ body {
     .choose-btn {
         position: relative;
         left: 340px;
-        top:15px;
+        top: 15px;
         width: 200px;
         border: none;
         height: 40px;
@@ -66,7 +66,7 @@ body {
         }
     }
 }
-.ticket_window:hover{
+.ticket_window:hover {
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }
 .exception {
@@ -84,16 +84,19 @@ body {
     justify-content: center;
     padding: 40px;
     margin-top: 5%;
+    h1{
+        margin-bottom: 0;
+        padding-top: 40px;
+    }
     .error-btn {
-        margin-top: 10px;
-        width: 150px;
-        border-radius: 8px;
+        width: 200px;
         border: none;
-        height: 30px;
-        font-weight: 16px;
+        height: 40px;
+        font-size: 16px;
         color: white;
         background-color: #e80032;
         margin: auto;
+        margin-top: 50px;
     }
     .error-btn:hover {
         background-color: #333;
