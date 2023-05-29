@@ -6,7 +6,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 140px);
+    height: 600PX;
 }
 .form-container {
 width: 100%;
@@ -16,6 +16,8 @@ background-color: #fff;
 padding: 20px;
 border-radius: 5px;
 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+margin-bottom: 0;
+margin-top: 10%;
 }
 
 .form-container h1 {

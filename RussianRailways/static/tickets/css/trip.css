@@ -132,8 +132,8 @@ body {
 }
 .main-sect .button-wrapper {
   background-color: #fff;
-  width: 960px;
-  padding: 20px;
+  width: 980px;
+  padding: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -141,8 +141,7 @@ body {
 }
 .main-sect .button-wrapper .choose-btn {
   position: relative;
-  left: 770px;
-  top: 10px;
+  left: 780px;
   width: 200px;
   border: none;
   height: 40px;

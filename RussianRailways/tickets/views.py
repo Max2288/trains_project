@@ -101,7 +101,7 @@ def finally_purchase(request):
             passenger = Passenger.objects.get(user=user)
             human_ticket = HumanTicket.objects.create(
                 price = RAILWAY_CARRIDGE_PRICES[carrige.type],
-                passenger_info_id = passenger   ,
+                passenger_info_id = passenger.id,
                 booking_date = datetime.now()
             )
             for orders in range(departure_station.order, arrival_station.order+1):
@@ -266,10 +266,3 @@ HumanTicketViewSet = create_viewset(HumanTicket, HumanTicketSerializer, Permissi
 PassengerViewSet = create_viewset(Passenger, PassengerSerializer, Permission, 'id')
 
 UserViewSet = create_viewset(User, UserSerializer, Permission, 'id')
-
-
-class ProfileViewSet(viewsets.ModelViewSet):
-
-    def me(self, request, *args, **kwargs):
-        user_id = request.user.id
-        return self.retrieve(request, user_id)

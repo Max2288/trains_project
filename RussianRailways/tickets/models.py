@@ -108,7 +108,7 @@ class AdditionalService(UUIDMixin, PriceMixin, NameMixin, DescriptionMixin):
 
 
 class HumanTicket(UUIDMixin, PriceMixin):
-    passenger_info_id = models.ForeignKey(
+    passenger_info = models.ForeignKey(
         'Passenger',
         models.DO_NOTHING,
         db_column='passenger_info_uuid'

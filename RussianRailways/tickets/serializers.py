@@ -67,13 +67,6 @@ class RailwayCarriageSerializer(serializers.ModelSerializer):
         fields = ['id', 'type', 'number_of_seats', 'seating_plan']
 
 
-class HumanTicketSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = HumanTicket
-        fields = ['id', 'price', 'booking_date', 'passenger_info_uuid']
-
-
 class TicketSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -83,8 +76,6 @@ class TicketSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    def create(self, validated_data):
-        return User.objects.create(**validated_data)
 
     class Meta:
         model = User
@@ -115,3 +106,33 @@ class PassengerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Passenger
         fields = ['id', 'user', 'phone_number', 'patronymic', 'passport_data']
+
+
+
+class HumanTicketSerializer(serializers.ModelSerializer):
+    passenger_info=PassengerSerializer()
+
+    def create(self, validated_data):
+        user = User.objects.create(
+            username=validated_data['passenger_info']['user']['username'],
+            first_name=validated_data['passenger_info']['user']['first_name'],
+            last_name=validated_data['passenger_info']['user']['last_name'],
+            email=validated_data['passenger_info']['user']['email'],
+            password=validated_data['passenger_info']['user']['password'],
+        )
+        passanger = Passenger.objects.create(
+            user=user,
+            phone_number=validated_data['passenger_info']['phone_number'],
+            patronymic=validated_data['passenger_info']['patronymic'],
+            passport_data=validated_data['passenger_info']['passport_data']
+        )
+        return HumanTicket.objects.create(
+                price = validated_data['price'],
+                passenger_info=passanger,
+                booking_date=validated_data['booking_date']
+        )
+        
+
+    class Meta:
+        model = HumanTicket
+        fields = ['id', 'price', 'booking_date', 'passenger_info']

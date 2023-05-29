@@ -298,3 +298,89 @@ class PassangerTest(APITestCase):
         self.assertFalse(
             RoutePart.objects.filter(id=self.model.id).exists()
         )
+
+
+class HumanTicketTest(APITestCase):
+
+    def setUp(self):
+        self.user = User.objects.create_user(
+            is_superuser=True,
+            id=1000,
+            username='test',
+            first_name='test',
+            last_name='test',
+            email='test@mail.ru',
+            password='test'
+        )
+        token = Token.objects.create(user=self.user)
+        self.client = APIClient()
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+        self.passanger = Passenger.objects.create(
+            user=self.user,
+            phone_number='123',
+            patronymic='test',
+            passport_data='test'
+        )
+        self.request_data = {
+            "price": 10000,
+            "passenger_info": {"user": {
+                "username": "MAX2288",
+                "first_name": "test1",
+                "last_name": "test1",
+                "email": "test321211@mail.com",
+                "password": "Test1"
+            },
+                "phone_number": "79103559596",
+                "patronymic": "test",
+                "passport_data": "4219 531762",
+            },
+            "booking_date": str(datetime.now())
+        }
+        self.model = HumanTicket.objects.create(
+            price=10000,
+            passenger_info=self.passanger,
+            booking_date=datetime.now()
+        )
+        self.to_change = {
+            "price": 10,
+        }
+
+    def test_create_model(self):
+        """Test for creating module."""
+        serializer = HumanTicketSerializer(data=self.request_data)
+        self.assertTrue(serializer.is_valid())
+        response = self.client.post(
+            '/rest/HumanTicket/',
+            data=json.dumps(self.request_data),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_get_model(self):
+        """Test for getting module."""
+        url_to_get = f'/rest/HumanTicket/{self.model.id}/'
+        response = self.client.get(url_to_get)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_update_model(self):
+        """Test for updating module."""
+        url_to_update = f'/rest/HumanTicket/{self.model.id}/'
+        response = self.client.patch(
+            url_to_update,
+            data=json.dumps(
+                self.to_change,
+            ),
+            content_type='application/json'
+        )
+        serializer = HumanTicketSerializer(data=self.to_change, partial=True)
+        self.assertTrue(serializer.is_valid())
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_delete_model(self):
+        """Test for deliting module."""
+        url_to_delete = f'/rest/HumanTicket/{self.model.id}/'
+        response = self.client.delete(url_to_delete)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertFalse(
+            HumanTicket.objects.filter(id=self.model.id).exists()
+        )

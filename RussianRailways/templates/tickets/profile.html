@@ -14,7 +14,7 @@
   <p>Пасспортные данные: {{ passenger.passport_data }}</p>
   <form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
-    <button type="submit">Выйти</button>
+    <button class="btn" type="submit">Выйти</button>
   </form>
 </div>
 {% endblock %}
