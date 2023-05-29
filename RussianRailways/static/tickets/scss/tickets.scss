@@ -20,14 +20,16 @@ body {
     border: none;
     margin-bottom: 20px;
     columns: 1;
-    border-radius: $bgRadius;
     background-color: #fff;
     .choose-btn {
-        border-radius: 8px;
+        position: relative;
+        left: 340px;
+        top:15px;
+        width: 200px;
         border: none;
-        width: 150px;
-        height: 30px;
-        color: #fff;
+        height: 40px;
+        font-size: 16px;
+        color: white;
         background-color: #e80032;
     }
     .choose-btn:hover {
@@ -64,7 +66,9 @@ body {
         }
     }
 }
-
+.ticket_window:hover{
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
 .exception {
     color: #333;
 }

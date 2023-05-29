@@ -130,17 +130,27 @@ body {
   -webkit-box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.1);
           box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.1);
 }
-.main-sect .choose-btn {
-  margin-top: 30px;
-  width: 150px;
-  border-radius: 8px;
+.main-sect .button-wrapper {
+  background-color: #fff;
+  width: 960px;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+}
+.main-sect .button-wrapper .choose-btn {
+  position: relative;
+  left: 770px;
+  top: 10px;
+  width: 200px;
   border: none;
-  height: 30px;
-  font-weight: 16px;
+  height: 40px;
+  font-size: 16px;
   color: white;
   background-color: #e80032;
 }
-.main-sect .choose-btn:hover {
+.main-sect .button-wrapper .choose-btn:hover {
   background-color: #333;
 }
 

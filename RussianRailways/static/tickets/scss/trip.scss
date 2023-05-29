@@ -113,19 +113,28 @@ body {
     .form-field:hover{
         box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.1);
     }
-    .choose-btn {
-        margin-top: 30px;
-        width: 150px;
-        border-radius: 8px;
-        border: none;
-        height: 30px;
-        font-weight: 16px;
-        color: white;
-        background-color: #e80032;
+    .button-wrapper{
+        background-color: #fff;
+        width: 960px;
+        padding: 20px;
+        display: flex;
+        margin: auto;
+        .choose-btn {
+            position: relative;
+            left: 770px;
+            top: 10px;
+            width: 200px;
+            border: none;
+            height: 40px;
+            font-size: 16px;
+            color: white;
+            background-color: #e80032;
+        }
+        .choose-btn:hover {
+            background-color: #333;
+        }
     }
-    .choose-btn:hover {
-        background-color: #333;
-    }
+
 }
 
 .bordered {

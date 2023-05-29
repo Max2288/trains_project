@@ -27,15 +27,17 @@ body {
   -webkit-columns: 1;
      -moz-columns: 1;
           columns: 1;
-  border-radius: 10px;
   background-color: #fff;
 }
 .ticket_window .choose-btn {
-  border-radius: 8px;
+  position: relative;
+  left: 340px;
+  top: 15px;
+  width: 200px;
   border: none;
-  width: 150px;
-  height: 30px;
-  color: #fff;
+  height: 40px;
+  font-size: 16px;
+  color: white;
   background-color: #e80032;
 }
 .ticket_window .choose-btn:hover {
@@ -80,6 +82,11 @@ body {
 }
 .ticket_window .user_route .part {
   margin: 20px;
+}
+
+.ticket_window:hover {
+  -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .exception {

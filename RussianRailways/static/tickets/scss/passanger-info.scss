@@ -81,18 +81,17 @@ body {
     }
     .choose-btn {
         margin-top: 10px;
-        width: 150px;
-        border-radius: 8px;
+        width: 200px;
         border: none;
-        height: 30px;
-        font-weight: 16px;
+        height: 40px;
+        font-size: 16px;
         color: white;
         background-color: #e80032;
     }
     .choose-btn:hover {
         background-color: #333;
     }
-    .profile-block{
+    .profile-block {
         width: 920px;
         padding: 40px;
         background-color: #fff;
@@ -101,7 +100,7 @@ body {
     }
 }
 .error {
-    h1{
+    h1 {
         color: #333;
     }
     width: 920px;
