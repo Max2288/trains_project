@@ -72,7 +72,6 @@ def buy_ticket(request):
         "seat_type": request.GET['seat_type'],
         "seat": request.GET['seat'],
     }
-    print(user_dictionary)
     return render(request, 'tickets/buy_ticket.html', user_dictionary)
 
 
@@ -116,7 +115,6 @@ def finally_purchase(request):
                 )
                 human_ticket.price += 200
                 human_ticket.save()
-        print('---------------------------------------')
         response = requests.post(
             url=config.BOOST_URL,
             headers=config.BOOST_HEADERS,
@@ -132,7 +130,6 @@ def finally_purchase(request):
                 }
             )
         id = response.json().get('id')
-        print(config.BOOST_REDIRECT.format(id=id))
         return redirect(config.BOOST_REDIRECT.format(id=id))
     return render(request, 'tickets/wrong.html')
 
@@ -183,8 +180,6 @@ def register(request):
             return redirect('login')
     else:
         form = RegistrationForm()
-    for error in form.errors:
-        print(error)
     context = {'form': form}
     return render(request, 'tickets/register.html', context)
 
