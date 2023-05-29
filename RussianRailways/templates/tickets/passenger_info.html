@@ -32,16 +32,16 @@
         <form method="post"
             action="{% url 'buy_ticket' %}?route={{ request.GET.route }}&departure_station={{ request.GET.departure_station }}&arrival_station={{ request.GET.arrival_station }}&seat_type={{ request.GET.seat_type }}&seat={{ request.GET.seat }}">
             {% csrf_token %}
-            <h3>В случае ошибки свяжитесь с тех поддержкой!</h3>
             <div class="profile-block">
+                <h3>В случае ошибки свяжитесь с тех поддержкой!</h3>
                 <p>Фамилия: {{ passenger.user.last_name }}</p>
                 <p>Имя: {{ passenger.user.first_name }}</p>
                 <p>Отчество: {{ passenger.patronymic }}</p>
                 <p>Почта: {{ passenger.user.email }}</p>
                 <p>Телефон: {{ passenger.phone_number }}</p>
                 <p>Пасспортные данные: {{ passenger.passport_data }}</p>
+                <button class="choose-btn" type="submit">Подтвердить</button>
             </div>
-            <button class="choose-btn" type="submit">Подтвердить</button>
         </form>
         {% else %}
         <div class="error">
