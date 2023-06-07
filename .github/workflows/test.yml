@@ -22,12 +22,12 @@ jobs:
     - name: Запуск postgis контейнера
       run: |
         docker run -d\
-    --name trains -p 5555:5432 \
-    -v $HOME/postgresql/RR_final:/var/lib/postgresql/RR_final \
-    -e POSTGRES_PASSWORD=0000 \
-    -e POSTGRES_USER=postgres \
-    -e POSTGRES_DB=trains_db \
-    -d postgis/postgis
+          --name trains -p 5555:5432 \
+          -v $HOME/postgresql/RR_final:/var/lib/postgresql/RR_final \
+          -e POSTGRES_PASSWORD=0000 \
+          -e POSTGRES_USER=postgres \
+          -e POSTGRES_DB=trains_db \
+          -d postgis/postgis
     - name: Установка зависимостей
       run: |
         python -m pip install --upgrade pip
