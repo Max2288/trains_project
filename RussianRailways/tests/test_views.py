@@ -4,6 +4,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 from tickets.models import *
 from django.urls import reverse
 from rest_framework.status import HTTP_200_OK as OK
@@ -153,7 +154,10 @@ class MainLogicTests(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.selenium = webdriver.Chrome()
+        options = Options()
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+        cls.selenium = webdriver.Chrome(chrome_options=options)
         cls.selenium.implicitly_wait(10)
 
     @classmethod
