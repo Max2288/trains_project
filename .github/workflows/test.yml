@@ -9,8 +9,6 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install gdal-bin libgdal-dev
-        pip install selenium
-        pip install python-dotenv
     - name: Set up PostGIS
       run: |
         sudo apt-get -y update
