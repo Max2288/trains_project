@@ -39,7 +39,7 @@ jobs:
     - name: Тесты django views
       run: |
         cd RussianRailways
-        python3 manage.py test tests.test_views
+        python3 manage.py test tests
     - name: Тесты django rest api
       run: |
         python3 manage.py test tests.test_rest
