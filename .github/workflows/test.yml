@@ -40,12 +40,3 @@ jobs:
       run: |
         cd RussianRailways
         python3 manage.py test tests
-    - name: Тесты django rest api
-      run: |
-        python3 manage.py test tests.test_rest
-    - name: Тесты django names
-      run: |
-        python3 manage.py test tests.test_names
-    - name: Тесты django wrong
-      run: |
-        python3 manage.py test tests.test_wrong
