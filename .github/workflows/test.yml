@@ -36,7 +36,6 @@ jobs:
         echo "POSTGRES_PASSWORD=0000" >> RussianRailways/.env
         echo "POSTGRES_DB=trains_db" >> RussianRailways/.env
         echo "POSTGRES_HOST=127.0.0.1" >> RussianRailways/.env
-        cd RussianRailways
     - name: Тесты django views
       run: |
         python3 manage.py test tests.test_views
