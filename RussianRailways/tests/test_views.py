@@ -203,6 +203,7 @@ class MainLogicTests(StaticLiveServerTestCase):
         sleep(2)
         btn = WebDriverWait(self.selenium, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'logo')))
         self.selenium.execute_script("arguments[0].click();", btn)
+        sleep(3)
         departure_city_input = self.selenium.find_element(
             By.NAME, "departure_city")
         departure_city_input.send_keys(self.first_station.name)
