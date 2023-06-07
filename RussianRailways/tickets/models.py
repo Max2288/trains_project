@@ -59,6 +59,11 @@ def validate_seat_number(seat_number):
             params={"seat_number": seat_number}
         )
 
+ticket_statues = (
+    ('Booked', 'Booked'),
+    ('Confirmed', 'Confirmed'),
+    ('Cancelled', 'Cancelled')
+)
 
 class UUIDMixin(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
@@ -111,6 +116,7 @@ class HumanTicket(UUIDMixin, PriceMixin):
         null=True,
         validators=[MinValueValidator(timezone.now())], help_text='date and time must be grater than now'
     )
+    status = models.CharField(choices=ticket_statues, default='Booked', blank=True, null=False, max_length=10)
 
     class Meta:
         db_table = 'human_ticket'
@@ -186,11 +192,7 @@ class RoutePart(UUIDMixin):
         db_table = 'route_part'
 
 
-ticket_statues = (
-    ('Booked', 'Booked'),
-    ('Confirmed', 'Confirmed'),
-    ('Cancelled', 'Cancelled')
-)
+
 
 
 class Ticket(UUIDMixin):
