@@ -33,7 +33,10 @@
                 <img style="margin-bottom: 10px;" src={{ image }} alt="">
                 {% for seat in seats %}
                 <label for="{{ seat }}">
-                    <p>Место {{seat}}</p>
+                    <div class="seat">
+                        <p>Место {{seat}}</p>
+                    </div>
+
                     <input class="checkoption" type="checkbox" value="{{ seat }}">
                 </label>
                 {% endfor %}

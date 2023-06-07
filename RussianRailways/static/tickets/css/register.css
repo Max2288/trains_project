@@ -1,12 +1,15 @@
 body{
   background-color: #f2f3ee;
+  display: flex;
+    flex-direction: column;
+    height: 130vh;
 }
 
 .register-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh + 50px);
+    height: 100%
   }
   
   .register-form {
@@ -16,7 +19,6 @@ body{
     padding: 30px;
     width: 400px;
     position: relative;
-    margin-top: 5%;
   }
   
   .register-form h1 {
@@ -26,7 +28,7 @@ body{
   }
   
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   .form-group label {

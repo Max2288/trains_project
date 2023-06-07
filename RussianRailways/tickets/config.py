@@ -1,3 +1,8 @@
+from os import getenv
+from load_dotenv import load_dotenv
+
+load_dotenv()
+
 QUERY_FOR_TRAINS = """
     with suitable_routes as (
         select route_uuid_id
@@ -101,10 +106,10 @@ RAILWAY_CARRIDGE_PRICES = {
 }
 
 ####BOOST BANK
-BOOST_URL = 'https://boostbank.ru/rest/bill/'
-BOOST_HEADERS = {'Authorization': 'Token 0d48ba53e2d7a25e45dc65e6bd2e3a115fbceb28'}
+BOOST_URL = 'https://boostbank.ru/rest/payment/'
+BOOST_HEADERS = {'Authorization': f"Token {getenv('BOOST_TOKEN')}"}
 BOOST_REDIRECT = 'https://boostbank.ru/payment/{id}'
-BOOST_ACCOUNT = '8ac00fe9-95f2-4234-a3cf-941dff8189f7'
-STATIC_THANKS = 'http://10.82.57.67:8000/succesessful'
-BOOST_CALLBACK_URL = 'http://10.82.57.67:8000/rest/Ticket/{id}/'
-BOOST_CALLBACK_HEADERS = {'Authorization': 'Token 8e96eaa3ff8510d4b5183742868ccb518971d040'}
+BOOST_ACCOUNT = 'ab0f0ccf-1e19-4e35-a84b-addc3753f4c0'
+STATIC_THANKS = 'http://84.252.75.29:8000/succesessful'
+BOOST_CALLBACK_URL = 'http://84.252.75.29:8000/rest/Ticket/{id}/'
+BOOST_CALLBACK_HEADERS = {'Authorization': f"Token {getenv('BOOST_CALLBACK_TOKEN')}"}

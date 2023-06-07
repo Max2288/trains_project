@@ -1,11 +1,8 @@
-{% extends 'tickets/base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'tickets/base.html' %} {% load static %} {% block content %}
 <head>
-    <link rel="stylesheet" href="{% static 'tickets/css/index.css' %}">
+  <link rel="stylesheet" href="{% static 'tickets/css/index.css' %}" />
 </head>
-<section>
-
+<section style="height: 90vh">
   <form method="get" action="{% url 'tickets' %}">
     <div class="main-sect">
       <div class="widget">
@@ -14,33 +11,207 @@
         </div>
         <div class="widget-inputs">
           {{ form.departure_city }}
-          <label for="dep_" class="swap-city-label"> 
+          <label for="dep_" class="swap-city-label">
             <button type="button" class="swap" id="swap-cities-btn"></button>
           </label>
-          {{ form.arrival_city }}
-          {{ form.departure_date }}
-          <label for="arr_" class="swap-dates-label"> 
-            <button type="button" class="swap-dates" id="swap-dates-btn"></button>
+          {{ form.arrival_city }} {{ form.departure_date }}
+          <label for="arr_" class="swap-dates-label">
+            <button
+              type="button"
+              class="swap-dates"
+              id="swap-dates-btn"
+            ></button>
           </label>
-          {{ form.arrival_date }} 
-          <button type="submit" class="find-routes" id="find-routes">Найти</button>
+          {{ form.arrival_date }}
+          <button type="submit" class="find-routes" id="find-routes">
+            Найти
+          </button>
         </div>
       </div>
     </div>
   </form>
+  <div class="gap">
+    <div
+      class="content_station"
+      onclick="showContentWindow(
+        'москва',
+         'Москва — крупнейшая историческая столица России, являющаяся культурным, политическим и экономическим центром страны. Станция Москва представляет собой величественный железнодорожный комплекс, сочетающий в себе современный дизайн и архитектурную изысканность. Станция обладает высоким уровнем комфорта для пассажиров и предлагает широкий спектр услуг, включая рестораны, магазины и информационные центры. Будучи одним из ключевых транспортных узлов, станция Москва служит важной точкой отправления и прибытия для многих железнодорожных маршрутов по всей России.',
+          '{% static 'tickets/img/moscow.jpeg' %}'
+          )"
+    >
+      <div class="content_header">Москва</div>
+      <div class="content_description">
+        Это чудесный город, в котором вы найдёте много новых приключений
+      </div>
+      <div class="content-footer">1</div>
+    </div>
+    <div
+      class="content_station"
+      onclick="showContentWindow(
+        'Санкт-Петербург',
+         'Санкт-Петербург — культурная и историческая жемчужина России. Станция Санкт-Петербург впечатляет своей элегантной архитектурой и величественным обликом. Расположенная в центре города, она служит важной транспортной точкой для путешественников и местным жителям. Станция обеспечивает высокий уровень сервиса и комфорта, предлагая пассажирам разнообразные удобства, включая кафе, магазины и информационные стенды. Это отправная точка для многих поездов, связывающих Санкт-Петербург с другими городами России, делая ее ключевым узлом железнодорожного сообщения.',
+          '{% static 'tickets/img/piter.jpg' %}'
+          )"
+    >
+      <div class="content_header">Санкт-Петербург</div>
+      <div class="content_description">
+        Дождь, слякоть и отсутствие солнца, всё это ждёт вас здесь
+      </div>
+      <div class="content-footer">2</div>
+    </div>
+    <div
+      class="content_station"
+      onclick="showContentWindow(
+      'Воронеж',
+       'Воронеж — крупный город в центре России, известный своей богатой историей и культурным наследием. Станция Воронеж представляет собой современный железнодорожный комплекс, обеспечивающий комфортное и удобное путешествие для пассажиров. С ярким и приветливым дизайном, она предлагает различные удобства, включая кафе, магазины и информационные пункты. Станция Воронеж служит важной транспортной точкой, соединяющей город с другими регионами России. Здесь пассажиры могут начать свое путешествие или прибыть в Воронеж, наслаждаясь комфортом и качеством обслуживания.',
+        '{% static 'tickets/img/voronezh.jpg' %}'
+        )"
+    >
+      <div class="content_header">Воронеж</div>
+      <div class="content_description">
+        Вы любите преступность? Она найдёт вас в любом уголке
+      </div>
+      <div class="content-footer">3</div>
+    </div>
+    <div
+      class="content_station"
+      onclick="showContentWindow(
+      'Кирилл',
+       'КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ КИРИЛЛ ',
+        '{% static 'tickets/img/kirill.jpg' %}'
+        )"
+    >
+      <div class="content_header">Кирилл</div>
+      <div class="content_description">
+        Это чудесный Кирилл, что тут ещё можно сказать, нет слов, одни эмоции
+      </div>
+      <div class="content-footer">4</div>
+    </div>
+    <div 
+    class="content_station"
+    onclick="showContentWindow(
+    'Альбервиль',
+     'Альбервиль — привлекательный город во Франции, расположенный в живописных Альпах. Станция Альбервиль является важным железнодорожным узлом, обеспечивающим удобное сообщение для путешественников. Современный и функциональный дизайн станции создает приятную атмосферу, а широкий спектр удобств, включая кафе, магазины и информационные стойки, обеспечивает комфорт пассажиров. Расположенная в окружении красивых горных пейзажей, станция Альбервиль является отправной точкой для многих поездов, позволяя путешественникам насладиться прекрасными видами и знакомством с этим прекрасным регионом Франции.',
+      '{% static 'tickets/img/albert.jpg' %}'
+      )"
+    >
+      <div class="content_header">Альбервиль</div>
+      <div class="content_description">
+        Ну как можно было забыть про чудесную аудиторию из арены
+      </div>
+      <div class="content-footer">8</div>
+    </div>
+    <div
+      class="content_station"
+      onclick="showContentWindow(
+      'Липецк',
+       'Липецк — промышленный и культурный центр России, расположенный в Центральном федеральном округе. Станция Липецк является железнодорожным узлом, обеспечивающим эффективную транспортную связь для путешественников. Современный и удобный дизайн станции создает комфортную атмосферу для пассажиров. Здесь можно найти разнообразные удобства, такие как кафе, магазины и информационные стойки, обеспечивающие удовлетворение потребностей пассажиров. Станция Липецк является отправной точкой для многих поездов, связывающих город с другими регионами России, и играет важную роль в обеспечении удобной и безопасной железнодорожной перевозки.',
+        '{% static 'tickets/img/lipetsk.jpg' %}'
+        )"
+    >
+      <div class="content_header">Липецк</div>
+      <div class="content_description">
+        Солнце, реки, горы, счастье и куча эмоций, везде но не тут
+      </div>
+      <div class="content-footer">7</div>
+    </div>
+    <div
+      class="content_station"
+      onclick="showContentWindow(
+      'Севастополь',
+       'Севастополь — исторически и культурно значимый город, расположенный на побережье Чёрного моря. Станция Севастополь является ключевым железнодорожным узлом, обеспечивающим удобную транспортную связь для путешественников. Расположенная в красивом природном окружении, станция предлагает современные удобства и комфортные условия для пассажиров. Здесь можно найти разнообразные сервисы, включая кафе, магазины и информационные пункты. Станция Севастополь является отправной точкой для многих поездов, позволяя путешественникам насладиться красотой города и окружающего побережья, а также погрузиться в богатую историю этого прекрасного места.',
+        '{% static 'tickets/img/krim.jpg' %}'
+        )"
+    >
+      <div class="content_header">Севастополь</div>
+      <div class="content_description">
+        Вы фанат VR игр? Может вам нравятся дроны? Отличный повод проверить
+      </div>
+      <div class="content-footer">6</div>
+    </div>
+    <div
+      class="content_station"
+      onclick="showContentWindow(
+        'Волгоград',
+         'Волгоград — город с героическим прошлым, расположенный на берегу Волги. Станция Волгоград является важным транспортным узлом, обеспечивающим связь с другими регионами России. Современный дизайн и функциональность станции создают комфортную среду для путешественников. Здесь пассажиры могут воспользоваться разнообразными удобствами, такими как кафе, магазины и информационные пункты. Станция Волгоград является отправной точкой для многих поездов, предоставляя возможность путешественникам насладиться богатым историческим наследием города, а также обнаружить его современное лицо и гостеприимство местных жителей.',
+          '{% static 'tickets/img/volgograd.jpg' %}'
+          )"
+    >
+      <div class="content_header">Волгоград</div>
+      <div class="content_description">
+        Я правда не знаю что сказать, НИКОГДА, НИКОГДА не приезжайте сюда
+      </div>
+      <div class="content-footer">5</div>
+    </div>
+  </div>
+  <div class="separator_upper"></div>
+  <div class="separator_upper" style="left: 94.5vh"></div>
+  <div class="separator_upper" style="left: 142vh"></div>
+  <div class="separator_upper" style="top: -15vh"></div>
+  <div class="separator_upper" style="left: 94.5vh; top: -15vh"></div>
+  <div class="separator_upper" style="left: 142vh; top: -15vh"></div>
+  <div class="separator_down"></div>
+  <div id="contentWindow" class="hidden">
+    <div id="contentWindowText"></div>
+    <img
+      src="{% static 'tickets/img/close_window.png' %}"
+      id="contentWindowClose"
+      onclick="hideContentWindow()"
+    />
+    <div class="hidden_display_values">
+      <div id="contentWindowImageContainer">
+        <img id="contentWindowImage" src="" alt="Картинка контента" />
+      </div>
+      <div id="contentWindowDescription"></div>
+    </div>
+  </div>
 </section>
-  
 <script>
-  const swapButton = document.getElementById('swap-cities-btn');
-const cityInputs = document.querySelectorAll('.widget-inputs input[type="text"]');
-swapButton.addEventListener('click', function() {
-  cityInputs[0].value = [cityInputs[1].value, cityInputs[1].value = cityInputs[0].value][0];
-  swapButton.classList.add('roll');
-  setTimeout(function() {
-    swapButton.classList.remove('roll');
-  }, 500);
+  const swapButton = document.getElementById("swap-cities-btn");
+  const cityInputs = document.querySelectorAll(
+    '.widget-inputs input[type="text"]'
+  );
+  swapButton.addEventListener("click", function () {
+    cityInputs[0].value = [
+      cityInputs[1].value,
+      (cityInputs[1].value = cityInputs[0].value),
+    ][0];
+    swapButton.classList.add("roll");
+    setTimeout(function () {
+      swapButton.classList.remove("roll");
+    }, 500);
+  });
+</script>
+<script>
+  function showContentWindow(contentText, contentDescription, imagePath) {
+    var contentWindow = document.getElementById("contentWindow");
+    contentWindow.classList.remove("hidden");
+    var overlay = document.createElement("div");
+    overlay.id = "overlay";
+    document.body.appendChild(overlay);
+    var contentElements = document.getElementsByClassName("content_station");
+    for (var i = 0; i < contentElements.length; i++) {
+      contentElements[i].style.opacity = "0.5";
+    }
+    var contentWindowText = document.getElementById("contentWindowText");
+    contentWindowText.innerText = contentText;
+    var contentWindowDescription = document.getElementById(
+      "contentWindowDescription"
+    );
+    contentWindowDescription.innerText = contentDescription;
+    var contentWindowImage = document.getElementById("contentWindowImage");
+    contentWindowImage.src = imagePath;
+  }
 
-});
-
+  function hideContentWindow() {
+    var contentWindow = document.getElementById("contentWindow");
+    contentWindow.classList.add("hidden");
+    var overlay = document.getElementById("overlay");
+    overlay.parentNode.removeChild(overlay);
+    var contentElements = document.getElementsByClassName("content_station");
+    for (var i = 0; i < contentElements.length; i++) {
+      contentElements[i].style.opacity = "1";
+    }
+  }
 </script>
 {% endblock %}

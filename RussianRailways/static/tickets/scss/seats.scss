@@ -1,6 +1,8 @@
 body {
     background: #f2f3ee;
     font-family: Poppins-Regular, sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
 .main-sect {
@@ -8,7 +10,7 @@ body {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    height: 90%;
     .local-header {
         width: 1000px;
         background-color: #fff;
@@ -83,11 +85,18 @@ body {
         margin: auto;
         label {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
+            flex-direction: row;
             background-color: #fff;
             width: 100%;
             margin-bottom: 10px;
             box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.1);
+            input{
+                margin-right: 50px;
+            }
+            .seat{
+                margin-left: 50px;
+            }
         }
         .choose-btn {
             left: 790px;

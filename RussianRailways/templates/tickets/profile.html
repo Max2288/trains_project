@@ -1,20 +1,53 @@
-{% extends 'tickets/base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'tickets/base.html' %} {% load static %} {% block content %}
 <head>
-  <link rel="stylesheet" href="{% static 'tickets/css/profile.css' %}">
+  <link
+    href="https://fonts.googleapis.com/css?family=Libre+Barcode+39+Extended+Text"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="{% static 'code-39-font-master/code39_all.css' %}"
+  />
+  <link rel="stylesheet" href="{% static 'tickets/css/profile.css' %}" />
 </head>
-<div class="profile-block">
-  <h1>Профиль</h1>
-  <p>Фамилия: {{ passenger.user.last_name }}</p>
-  <p>Имя: {{ passenger.user.first_name }}</p>
-  <p>Отчество: {{ passenger.patronymic }}</p>
-  <p>Почта: {{ passenger.user.email }}</p>
-  <p>Телефон: {{ passenger.phone_number }}</p>
-  <p>Пасспортные данные: {{ passenger.passport_data }}</p>
-  <form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <button class="btn" type="submit">Выйти</button>
-  </form>
+<div class="profile-main">
+  <div class="profile-block">
+    <div class="profile-name">
+      <h1>Ваши данные</h1>
+    </div>
+    <div class="image-block">
+      <img src="{% static 'tickets/img/profile_icon.png' %}" alt="" />
+    </div>
+    <p>Фамилия: {{ passenger.user.last_name }}</p>
+    <p>Имя: {{ passenger.user.first_name }}</p>
+    <p>Отчество: {{ passenger.patronymic }}</p>
+    <p>Почта: {{ passenger.user.email }}</p>
+    <p>Телефон: {{ passenger.phone_number }}</p>
+    <p>Пасспортные данные: {{ passenger.passport_data }}</p>
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button class="btn" type="submit">Выйти</button>
+    </form>
+  </div>
+  <div class="tickets_window">
+    {% if tickets %}
+    <div class="tickets_view">
+      {% for ticket in tickets %}
+      <div class="baracode">
+        <div class="ticket">
+          <h1>Ваш билет {{ forloop.counter }}</h1>
+          <div class="price">Стоимость: {{ticket.price}}</div>
+          <div class="baracode_baracode">{{ ticket.id|slice:":2" }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="centered_text">
+      <h1>Вы ещё не приобрели билетов.</h1>
+    </div>
+
+    {% endif %}
+  </div>
 </div>
 {% endblock %}

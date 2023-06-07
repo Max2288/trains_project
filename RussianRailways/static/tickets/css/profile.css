@@ -1,15 +1,47 @@
 body {
   background: #f2f3ee;
   font-family: Poppins-Regular, sans-serif;
+  display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.profile-main{
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ height: 90vh;
+ box-sizing: border-box;
 }
 
 .profile-block {
-    margin-top: 80px;
-    padding: 20px;
+    margin: 80px;
     font-family: "IBM_Plex_Sans","Arial",sans-serif;
+    background-color: #fff;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+.profile-block:hover{
+  box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+  .profile-block .profile-name{
+    text-align: center;
+  }
+
+  .profile-block .image-block{
+    width:  20%;
+    margin-top: -100px;
+  }
+  .profile-block .image-block img{
+    width: 100%;
   }
   
-  .profile-block h1 {
+  .profile-block .profile-name h1 {
     font-size: 24px;
     font-weight: bold;
   }
@@ -36,3 +68,52 @@ body {
     background-color: #C0855D;
   }
   
+
+  .tickets_window{
+    width: 70%;
+    font-family: "IBM_Plex_Sans","Arial",sans-serif;
+    background-color: #fff;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 80px;
+  }
+  .tickets_window:hover{
+    box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+  .baracode{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .centered_text{
+    margin: auto;
+  }
+  .baracode .ticket{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 150px;
+    text-align: center;
+    border: 1px solid #000;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .baracode .ticket h1{
+    margin: 5px;
+  }
+  .baracode .ticket .price{
+    margin: 10px;
+  }
+  .baracode .ticket .baracode_baracode{
+    font-family: 'Libre Barcode 39 Extended Text', cursive;
+    font-size: 24px;
+    width: 700px;
+  }

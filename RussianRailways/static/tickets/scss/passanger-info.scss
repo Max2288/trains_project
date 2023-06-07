@@ -2,8 +2,12 @@ body {
     background: #f2f3ee;
     text-align: center;
     font-family: Poppins-Regular, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 .local-header {
+    margin-top: 18px;
     width: 1000px;
     background-color: #fff;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
@@ -20,6 +24,7 @@ body {
     ul {
         display: flex;
         padding-left: 20px;
+        margin-top: 0px;
         .red {
             background-color: #e80032;
         }
@@ -69,6 +74,7 @@ body {
 }
 .main-sect {
     text-align: center;
+    height: 90vh;
     h1 {
         color: #e80032;
     }

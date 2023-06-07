@@ -1,6 +1,13 @@
 body {
   background: #f2f3ee;
   font-family: Poppins-Regular, sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .main-sect {
@@ -13,9 +20,7 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  height: 90%;
 }
 .main-sect .local-header {
   width: 1000px;
@@ -109,13 +114,24 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   background-color: #fff;
   width: 100%;
   margin-bottom: 10px;
   -webkit-box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.1);
           box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.1);
+}
+.main-sect .main-chooses label input {
+  margin-right: 50px;
+}
+.main-sect .main-chooses label .seat {
+  margin-left: 50px;
 }
 .main-sect .main-chooses .choose-btn {
   left: 790px;

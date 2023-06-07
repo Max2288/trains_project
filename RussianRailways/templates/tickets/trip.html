@@ -137,67 +137,64 @@
 
         </form>
     </div>
-    <script>
-        window.onload = function () {
-            const form = document.getElementById('seat-form');
-            const radios = form.querySelectorAll('input');
-            const chooseBtn = document.querySelector('.choose-btn');
-            let selectedValues = [];
-            const chooseDict = {
-              "seat_type_sv": 'СВ',
-              "seat_type_platzkart": 'Плацкарт',
-              "seat_type_kupe": 'Купе'
-            };
-            const chooseDictSecond = {
-              "СВ": 'seat_type_sv',
-              "Плацкарт": 'seat_type_platzkart',
-              "Купе": 'seat_type_kupe'
-            };
-            radios.forEach(function (radio) {
-              radio.addEventListener('change', function () {
-                if (this.checked) {
-                  var formField = this.closest('.form-field');
-                  if (selectedValues.length != 0) {
-                    var elementIndex = selectedValues.length - 1;
-                    var element = selectedValues[elementIndex];
-                    var elementId = chooseDictSecond[element];
-                    var elementForm = document.getElementById(elementId);
-                    if (elementForm) {
-                      elementForm = elementForm.closest('.form-field');
-                      elementForm.classList.remove('bordered');
-                    }
-                    selectedValues.splice(elementIndex, 1);
-                  }
-                  selectedValues.push(chooseDict[this.id]);
-                  formField.classList.add('bordered');
-                }
-              });
-            });
-          
-          
-
-
-            chooseBtn.addEventListener('click', function (event) {
-                event.preventDefault();
-
-                if (selectedValues.length === 1) {
-                    const actionUrl = form.getAttribute('action');
-                    const queryParam = `&seat_type=${selectedValues[0]}`;
-                    form.setAttribute('action', actionUrl + queryParam);
-                    form.submit();
-                } else if (selectedValues.length === 0) {
-                    alert('Пожалуйста, выберите один вариант!');
-                }
-            });
-        };
-
-
-    </script>
-
-
-
-
 </body>
+
+<script>
+    window.onload = function () {
+        const form = document.getElementById('seat-form');
+        const radios = form.querySelectorAll('input');
+        const chooseBtn = document.querySelector('.choose-btn');
+        let selectedValues = [];
+        const chooseDict = {
+          "seat_type_sv": 'СВ',
+          "seat_type_platzkart": 'Плацкарт',
+          "seat_type_kupe": 'Купе'
+        };
+        const chooseDictSecond = {
+          "СВ": 'seat_type_sv',
+          "Плацкарт": 'seat_type_platzkart',
+          "Купе": 'seat_type_kupe'
+        };
+        radios.forEach(function (radio) {
+          radio.addEventListener('change', function () {
+            if (this.checked) {
+              var formField = this.closest('.form-field');
+              if (selectedValues.length != 0) {
+                var elementIndex = selectedValues.length - 1;
+                var element = selectedValues[elementIndex];
+                var elementId = chooseDictSecond[element];
+                var elementForm = document.getElementById(elementId);
+                if (elementForm) {
+                  elementForm = elementForm.closest('.form-field');
+                  elementForm.classList.remove('bordered');
+                }
+                selectedValues.splice(elementIndex, 1);
+              }
+              selectedValues.push(chooseDict[this.id]);
+              formField.classList.add('bordered');
+            }
+          });
+        });
+      
+      
+
+
+        chooseBtn.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            if (selectedValues.length === 1) {
+                const actionUrl = form.getAttribute('action');
+                const queryParam = `&seat_type=${selectedValues[0]}`;
+                form.setAttribute('action', actionUrl + queryParam);
+                form.submit();
+            } else if (selectedValues.length === 0) {
+                alert('Пожалуйста, выберите один вариант!');
+            }
+        });
+    };
+
+
+</script>
 
 </html>
 

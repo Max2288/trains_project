@@ -1,58 +1,66 @@
-{% extends 'tickets/base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'tickets/base.html' %} {% load static %} {% block content %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'tickets/css/passanger-info.css' %}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{% static 'tickets/css/passanger-info.css' %}"
+    />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="local-header">
-        <a onclick="javascript:history.back(); return false;"><img src="{% static 'tickets/img/left-arrow.png' %}"
-                alt=""></a>
-        <ul>
-            <li class="red-white">1</li>
-            <div class="sep-li-red-white"></div>
-            <li class="red-white">2</li>
-            <div class="sep-li-red-white"></div>
-            <li class="red">3</li>
-            <div class="sep-li"></div>
-            <li>4</li>
-        </ul>
-        <p>Проверьте ваши данныe</p>
+      <a onclick="javascript:history.back(); return false;"
+        ><img src="{% static 'tickets/img/left-arrow.png' %}" alt=""
+      /></a>
+      <ul>
+        <li class="red-white">1</li>
+        <div class="sep-li-red-white"></div>
+        <li class="red-white">2</li>
+        <div class="sep-li-red-white"></div>
+        <li class="red">3</li>
+        <div class="sep-li"></div>
+        <li>4</li>
+      </ul>
+      <p>Проверьте ваши данныe</p>
     </div>
     <div class="main-sect">
-        {% if request.user.is_authenticated %}
-        <form method="post"
-            action="{% url 'buy_ticket' %}?route={{ request.GET.route }}&departure_station={{ request.GET.departure_station }}&arrival_station={{ request.GET.arrival_station }}&seat_type={{ request.GET.seat_type }}&seat={{ request.GET.seat }}">
-            {% csrf_token %}
-            <div class="profile-block">
-                <h3>В случае ошибки свяжитесь с тех поддержкой!</h3>
-                <p>Фамилия: {{ passenger.user.last_name }}</p>
-                <p>Имя: {{ passenger.user.first_name }}</p>
-                <p>Отчество: {{ passenger.patronymic }}</p>
-                <p>Почта: {{ passenger.user.email }}</p>
-                <p>Телефон: {{ passenger.phone_number }}</p>
-                <p>Пасспортные данные: {{ passenger.passport_data }}</p>
-                <button class="choose-btn" type="submit">Подтвердить</button>
-            </div>
-        </form>
-        {% else %}
-        <div class="error">
-            <h1>Для продолжения войдите в систему!</h1>
-            <div class="error-module">
-                <button class="error-btn" type="submit" onclick="location.href='{% url 'login' %}';">Войти</button>
-            </div>
+      {% if request.user.is_authenticated %}
+      <form
+        method="post"
+        action="{% url 'buy_ticket' %}?route={{ request.GET.route }}&departure_station={{ request.GET.departure_station }}&arrival_station={{ request.GET.arrival_station }}&seat_type={{ request.GET.seat_type }}&seat={{ request.GET.seat }}"
+      >
+        {% csrf_token %}
+        <div class="profile-block">
+          <h3>В случае ошибки свяжитесь с тех поддержкой!</h3>
+          <p>Фамилия: {{ passenger.user.last_name }}</p>
+          <p>Имя: {{ passenger.user.first_name }}</p>
+          <p>Отчество: {{ passenger.patronymic }}</p>
+          <p>Почта: {{ passenger.user.email }}</p>
+          <p>Телефон: {{ passenger.phone_number }}</p>
+          <p>Пасспортные данные: {{ passenger.passport_data }}</p>
+          <button class="choose-btn" type="submit">Подтвердить</button>
         </div>
-        {% endif %}
+      </form>
+      {% else %}
+      <div class="error">
+        <h1>Для продолжения войдите в систему!</h1>
+        <div class="error-module">
+          <button
+            class="error-btn"
+            type="submit"
+            onclick="location.href='{% url 'login' %}';"
+          >
+            Войти
+          </button>
+        </div>
+      </div>
+      {% endif %}
     </div>
-</body>
-
+  </body>
 </html>
 {% endblock %}

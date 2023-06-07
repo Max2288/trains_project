@@ -1,16 +1,105 @@
-{% extends 'tickets/base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'tickets/base.html' %} {% load static %} {% block content %}
 <head>
-    <link rel="stylesheet" href="{% static 'tickets/css/contacts.css' %}">
+  <link rel="stylesheet" href="{% static 'tickets/css/contacts.css' %}" />
 </head>
-<style>
-
-  
-</style>
+<style></style>
 <body>
-    <div class="main-sect">
-
+  <div class="main-sect">
+    <div class="main-img">
+      <img src="{% static 'tickets/img/faces.jpeg' %}" alt="faces" />
     </div>
+    <div class="main-text">
+      <p>Контакты</p>
+      <div class="main-area">
+        <div class="block">
+          <div class="first">ПОЛНОЕ НАИМЕНОВАНИЕ ОБЩЕСТВА</div>
+          <div class="second">
+            Открытое акционерное общество «Российские железные дороги»
+          </div>
+        </div>
+        <div class="block">
+          <div class="first">СОКРАЩЕННОЕ НАИМЕНОВАНИЕ</div>
+          <div class="second">ОАО «РЖД»</div>
+        </div>
+        <div class="block">
+          <div class="first">НАИМЕНОВАНИЕ НА АНГЛИЙСКОМ ЯЗЫКЕ</div>
+          <div class="second">
+            Joint Stock Company "Russian Railways" (JSCo "RZD")
+          </div>
+        </div>
+        <div class="block">
+          <div class="first">ЮРИДИЧЕСКИЙ АДРЕС</div>
+          <div class="second">
+            107174, г. Москва, вн. тер. г. муниципальный округ Басманный, ул.
+            Новая Басманная, д. 2/1, стр.1.
+          </div>
+        </div>
+        <div class="block">
+          <div class="first">ПОЧТОВЫЙ АДРЕС</div>
+          <div class="second">
+            107174, г. Москва, ул. Новая Басманная, д. 2/1, стр. 1
+          </div>
+        </div>
+        <div class="block">
+          <div class="first">ПАССАЖИРСКИЕ ПЕРЕВОЗКИ</div>
+          <div class="second"></div>
+        </div>
+        <div class="block">
+          <div class="first">Телефон Центра поддержки клиентов ОАО «РЖД»</div>
+          <div class="second">
+            8 (800) 775-00-00 (звонок бесплатный из всех регионов РФ) +7 (499)
+            605-20-00 (по всему миру, оплата в соответствии с тарифами вашего
+            оператора связи)
+          </div>
+        </div>
+        <div class="block">
+          <div class="first">
+            Служба поддержки электронной площадки «Пассажирские перевозки»
+          </div>
+          <div class="second">
+            ticket@rzd.ru (только вопросы, связанные с электронными билетами.
+            Размер электронного письма с вложением не должен превышать 14 Мб)
+            8-800-100-10-00 или bonus@fpc.ru (по вопросам программы лояльности
+            «РЖД Бонус»)
+          </div>
+        </div>
+        <div class="block">
+          <div class="first">ГРУЗОВЫЕ ПЕРЕВОЗКИ</div>
+          <div class="second"></div>
+        </div>
+        <div class="block">
+          <div class="first">Телефон</div>
+          <div class="second">
+            8 (800) 755-00-00 (звонок бесплатный из всех регионов РФ) +7 (499)
+            605-06-05 (по всему миру, оплата в соответствии с тарифами вашего
+            оператора связи)
+          </div>
+        </div>
+        <div class="block">
+          <div class="first">
+            Служба клиентской поддержки по вопросам грузовых перевозок
+          </div>
+          <div class="second">cargo.support@rzd.ru</div>
+        </div>
+        <div class="block">
+          <div class="first">ПРЕСС-ЦЕНТР</div>
+          <div class="second">cos@center.rzd.ru</div>
+        </div>
+        <div class="block">
+          <div class="first">ДЛЯ ОБРАЩЕНИЙ ЮРИДИЧЕСКИХ ЛИЦ</div>
+          <div class="second">
+            fax@css.rzd.ru (только в форме официального подписанного
+            электронного документа в адреса конкретных должностных лиц ОАО
+            «РЖД». Размер электронного сообщения с вложением не должен превышать
+            5 Мб)
+          </div>
+        </div>
+        <div class="block">
+          <div class="first">ФАКС</div>
+          <div class="second">+7 (499) 262-90-95</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 {% endblock %}

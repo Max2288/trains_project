@@ -2,6 +2,14 @@ body {
   background: #f2f3ee;
   text-align: center;
   font-family: Poppins-Regular, sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100vh;
 }
 
 .local-header {
@@ -24,6 +32,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin-top: 0px;
   padding-left: 20px;
 }
 .local-header ul .red {
@@ -78,20 +87,32 @@ body {
   margin-top: 30px;
 }
 
-.main-sect {
+.main {
+  margin-top: 18px;
+  height: 90vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+.main .main-sect {
   width: 920px;
   padding: 40px;
-  margin: auto;
   background-color: #fff;
   -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
           box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
-.main-sect p {
+.main .main-sect p {
   color: #333;
   font-size: 20px;
   font-weight: 400;
 }
-.main-sect .choose-btn {
+.main .main-sect .choose-btn {
   margin-left: auto;
   margin-right: auto;
   margin-top: 10px;
@@ -102,6 +123,6 @@ body {
   color: white;
   background-color: #e80032;
 }
-.main-sect .choose-btn:hover {
+.main .main-sect .choose-btn:hover {
   background-color: #333;
 }

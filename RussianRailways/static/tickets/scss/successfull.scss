@@ -2,9 +2,26 @@ body {
     background: #f2f3ee;
     text-align: center;
     font-family: Poppins-Regular, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    .content{
+        background-color: #fff;
+        box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.1);
+        width: 40%;
+        margin: auto;
+        .img_container{
+            margin: 40px;
+        }
+    }
+    .content:hover{
+        box-shadow: 2px 2px 6px 6px rgba(0, 0, 0, 0.1);
+    }
 }
 h1 {
-    color: #e80032;
+    color: #333;
+    margin: 40px;
 }
 .cross{
     width: 25%;

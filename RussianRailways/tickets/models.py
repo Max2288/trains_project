@@ -51,13 +51,6 @@ def validate_passport_data(passport_data):
         )
 
 
-def validate_number_of_seats(number_of_seats):
-    if number_of_seats <= 10:
-        raise ValidationError(
-            gettext_lazy("Number_of_seats is lower or equal than 10!"),
-            params={"number_of_seats": number_of_seats}
-        )
-
 def validate_seat_number(seat_number):
     
     if not 0 <= seat_number < 40:

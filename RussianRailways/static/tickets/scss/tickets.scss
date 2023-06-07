@@ -4,6 +4,11 @@ body {
     background: #f2f3ee;
     text-align: center;
     font-family: Poppins-Regular, sans-serif;
+    background-color: #F2F3EE;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
 }
 
 .ticket_window {

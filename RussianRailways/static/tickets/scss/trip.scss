@@ -1,6 +1,9 @@
 body {
     background: #f2f3ee;
     font-family: Poppins-Regular, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .main-sect {
@@ -8,6 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 150vh;
     .local-header {
         width: 1000px;
         background-color: #fff;

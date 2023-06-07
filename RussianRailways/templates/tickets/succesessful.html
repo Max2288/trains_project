@@ -7,8 +7,12 @@
     <link rel="stylesheet" href="{% static 'tickets/css/successfull.css' %}">
 </head>
 <body>
-    <h1>Билет успешно куплен!</h1>
-    <a href="{% url 'home' %}"><img class="cross" src="{% static 'tickets/img/galochka.png' %}" alt="cross"></a> 
+    <div class="content">
+        <h1>Билет успешно куплен!</h1>
+        <div class="img_container">
+            <a href="{% url 'home' %}"><img class="cross" src="{% static 'tickets/img/galochka.png' %}" alt="cross"></a> 
+        </div>
+    </div>
 </body>
 </html>
 

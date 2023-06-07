@@ -5,7 +5,7 @@ header {
     background-color: #584D47;
     display: flex;
     align-items: center;
-    height: 80px;
+    height: 5vh;
     width: 100%;
     font-family: Poppins-Regular,sans-serif;
   }
@@ -95,9 +95,8 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60px;
+    height: 5vh;
     font-size: 14px;
-    margin-top: 35%;
   }
   
   footer p {

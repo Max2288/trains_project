@@ -2,6 +2,18 @@ body {
   background: #f2f3ee;
   text-align: center;
   font-family: Poppins-Regular, sans-serif;
+  background-color: #F2F3EE;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100vh;
 }
 
 .ticket_window {

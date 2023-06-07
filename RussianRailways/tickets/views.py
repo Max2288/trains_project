@@ -6,20 +6,21 @@ from django.contrib.auth import authenticate, login, logout, decorators
 from django.contrib.auth.models import User
 from tickets.forms import RegistrationForm
 from tickets.serializers import *
-from tickets.config import QUERY_FOR_TRAINS, UNSAFE_METHODS, SAFE_METHODS, SEATING_IMAGES, RAILWAY_CARRIDGE_PRICES
+from tickets.config import QUERY_FOR_TRAINS, SEATING_IMAGES, RAILWAY_CARRIDGE_PRICES
 from django.db import connection
-from rest_framework import permissions, viewsets, parsers, status as status_codes
-from rest_framework.response import Response
+from rest_framework import permissions, viewsets
 from django.db import models
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
 from . import config
+from django.utils import timezone
 
 
 @csrf_protect
 def index(request):
     find = TicketSearchForm()
     return render(request, 'tickets/index.html', {'form': find})
+
 
 @csrf_protect
 def trip(request):
@@ -46,7 +47,8 @@ def seats(request):
         tickets_list = Ticket.objects.filter(
             route_part=route_part.id, railway_carriage_info_uuid=carrige.id)
         ordered_tickets += [ticket.seat_number for ticket in tickets_list]
-    free_seats = [item for item in range(1, carrige.number_of_seats+1) if item not in ordered_tickets]
+    free_seats = [item for item in range(
+        1, carrige.number_of_seats+1) if item not in ordered_tickets]
 
     return render(
         request,
@@ -57,14 +59,16 @@ def seats(request):
         }
     )
 
+
 def passenger_info(request):
     passanger_dictionary = {}
     if request.user.is_authenticated:
         user = User.objects.get(username=request.user.username)
-        passenger = Passenger.objects.get(user = user)
+        passenger = Passenger.objects.get(user=user)
         passanger_dictionary = {'passenger': passenger}
     return render(request, 'tickets/passenger_info.html', passanger_dictionary)
-    
+
+
 def buy_ticket(request):
     user_dictionary = {
         "departure_station": request.GET['departure_station'],
@@ -78,34 +82,36 @@ def buy_ticket(request):
 def finally_purchase(request):
     if request.method == 'POST':
         departure_station = RoutePart.objects.get(
-                start=RailwayStation.objects.get(
-                    name=request.GET.get('departure_station')
-                ).id
-            )
+            start=RailwayStation.objects.get(
+                name=request.GET.get('departure_station')
+            ).id
+        )
         arrival_station = RoutePart.objects.get(
-                stop_uuid=RailwayStation.objects.get(
-                    name=request.GET.get('arrival_station')
-                ).id
-            )
+            stop_uuid=RailwayStation.objects.get(
+                name=request.GET.get('arrival_station')
+            ).id
+        )
         route = Route.objects.get(id=request.GET.get('route')).id
-        carrige = RailwayCarriage.objects.get(type=request.GET.get('seat_type'))
+        carrige = RailwayCarriage.objects.get(
+            type=request.GET.get('seat_type'))
         seat = request.GET.get('seat')
         user = User.objects.get(id=request.user.id)
         if Ticket.objects.filter(
             route_part=departure_station,
-              railway_carriage_info_uuid=carrige,
-              seat_number=int(seat)
-              ).exists():
+            railway_carriage_info_uuid=carrige,
+            seat_number=int(seat)
+        ).exists():
             return redirect('wrong')
-        if departure_station and  arrival_station and  route and  carrige and  seat:
+        if departure_station and arrival_station and route and carrige and seat:
             passenger = Passenger.objects.get(user=user)
             human_ticket = HumanTicket.objects.create(
-                price = RAILWAY_CARRIDGE_PRICES[carrige.type],
-                passenger_info_id = passenger.id,
-                booking_date = datetime.now()
+                price=RAILWAY_CARRIDGE_PRICES[carrige.type],
+                passenger_info_id=passenger.id,
+                booking_date=datetime.now()
             )
             for orders in range(departure_station.order, arrival_station.order+1):
-                route_part = RoutePart.objects.get(order=orders, route_uuid=route)
+                route_part = RoutePart.objects.get(
+                    order=orders, route_uuid=route)
                 ticket = Ticket.objects.create(
                     route_part=route_part,
                     railway_carriage_info_uuid=carrige,
@@ -121,23 +127,27 @@ def finally_purchase(request):
             json={
                 'recipient': config.BOOST_ACCOUNT,
                 'amount': human_ticket.price,
+                'pay_date': f'{timezone.now() + timedelta(minutes=2)}',
                 'callback':
                     {
                         'redirect': config.STATIC_THANKS,
                         'url': config.BOOST_CALLBACK_URL.format(id=ticket.id),
                         'headers': config.BOOST_CALLBACK_HEADERS
                     }
-                }
-            )
+            }
+        )
         id = response.json().get('id')
         return redirect(config.BOOST_REDIRECT.format(id=id))
     return render(request, 'tickets/wrong.html')
 
+
 def wrong(request):
     return render(request, 'tickets/wrong.html')
 
+
 def succesessful(request):
-    return render(request, 'tickets/succesessful.html')   
+    return render(request, 'tickets/succesessful.html')
+
 
 def tickets(request):
     departure_city = request.GET.get('departure_city')
@@ -203,7 +213,15 @@ def login_view(request):
 @decorators.login_required(login_url='login')
 def profile(request):
     passenger = Passenger.objects.get(user=request.user)
-    return render(request, 'tickets/profile.html', {'passenger': passenger})
+    tickets = HumanTicket.objects.filter(passenger_info=passenger)
+    return render(
+        request,
+        'tickets/profile.html',
+        {
+            'passenger': passenger,
+            'tickets': tickets
+        }
+    )
 
 
 def logout_view(request):
@@ -215,54 +233,48 @@ def contacts(request):
     return render(request, 'tickets/contacts.html')
 
 
-class Permission(permissions.BasePermission):
-    def has_permission(self, request, _):
-        if request.method in SAFE_METHODS:
-            return bool(request.user and request.user.is_authenticated)
-        elif request.method in UNSAFE_METHODS:
-            return bool(request.user and request.user.is_superuser)
-        return False
-
-
 def query_from_request(request, cls_serializer=None) -> dict:
     if cls_serializer:
         query = {}
         for attr in cls_serializer.Meta.fields:
-            attr_value = request.GET.get(attr, '')
-            if attr_value:
-                query[attr] = attr_value
+            request.GET.get(attr, '')
         return query
-    return request.GET
 
 
 def create_viewset(cls_model: models.Model, serializer, permission, order_field):
     class_name = f"{cls_model.__name__}ViewSet"
     doc = f"API endpoint that allows users to be viewed or edited for {cls_model.__name__}"
-    CustomViewSet = type(class_name, (viewsets.ModelViewSet,),{
-                        "__doc__": doc,
-    "serializer_class": serializer,
-    "queryset": cls_model.objects.all().order_by(order_field),
-    "permission classes": [permission],
-    "get_queryset": lambda self, *args, **kwargs: cls_model.objects.filter(**query_from_request(self.request, serializer)).order_by(order_field)}
-     )
+    CustomViewSet = type(class_name, (viewsets.ModelViewSet,), {
+        "__doc__": doc,
+        "serializer_class": serializer,
+        "queryset": cls_model.objects.all().order_by(order_field),
+        "permission classes": [permission],
+        "get_queryset": lambda self, *args, **kwargs: cls_model.objects.filter(**query_from_request(self.request, serializer)).order_by(order_field)}
+    )
 
     return CustomViewSet
 
-RoutePartViewSet = create_viewset(RoutePart, RoutPartSerializer, Permission, 'id')
+
+RoutePartViewSet = create_viewset(
+    RoutePart, RoutPartSerializer, permissions.BasePermission, 'id')
 
 AdditionalServiceViewSet = create_viewset(
-    AdditionalService, AdditionalServiceSerializer, Permission, 'name')
+    AdditionalService, AdditionalServiceSerializer, permissions.BasePermission, 'name')
 
 RailwayCarriageViewSet = create_viewset(
-    RailwayCarriage, RailwayCarriageSerializer, Permission, 'type')
+    RailwayCarriage, RailwayCarriageSerializer, permissions.BasePermission, 'type')
 
 RailwayStationViewSet = create_viewset(
-    RailwayStation, RailwayStationSerializer, Permission, 'name')
+    RailwayStation, RailwayStationSerializer, permissions.BasePermission, 'name')
 
-TicketViewSet = create_viewset(Ticket, TicketSerializer, Permission, 'id')
+TicketViewSet = create_viewset(
+    Ticket, TicketSerializer, permissions.BasePermission, 'id')
 
-HumanTicketViewSet = create_viewset(HumanTicket, HumanTicketSerializer, Permission, 'id')
+HumanTicketViewSet = create_viewset(
+    HumanTicket, HumanTicketSerializer, permissions.BasePermission, 'id')
 
-PassengerViewSet = create_viewset(Passenger, PassengerSerializer, Permission, 'id')
+PassengerViewSet = create_viewset(
+    Passenger, PassengerSerializer, permissions.BasePermission, 'id')
 
-UserViewSet = create_viewset(User, UserSerializer, Permission, 'id')
+UserViewSet = create_viewset(
+    User, UserSerializer, permissions.BasePermission, 'id')
