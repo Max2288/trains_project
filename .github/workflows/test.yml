@@ -38,6 +38,7 @@ jobs:
         echo "POSTGRES_HOST=127.0.0.1" >> RussianRailways/.env
     - name: Тесты django views
       run: |
+        cd RussianRailways
         python3 manage.py test tests.test_views
     - name: Тесты django rest api
       run: |
