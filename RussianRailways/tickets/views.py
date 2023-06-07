@@ -131,7 +131,7 @@ def finally_purchase(request):
                 'callback':
                     {
                         'redirect': config.STATIC_THANKS,
-                        'url': config.BOOST_CALLBACK_URL.format(id=ticket.id),
+                        'url': config.BOOST_CALLBACK_URL.format(id=human_ticket.id),
                         'headers': config.BOOST_CALLBACK_HEADERS
                     }
             }

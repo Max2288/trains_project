@@ -204,7 +204,7 @@ class Ticket(UUIDMixin):
     status = models.CharField(choices=ticket_statues, default='Booked', blank=True, null=False, max_length=10)
     human_ticket = models.ForeignKey(
         HumanTicket,
-        models.DO_NOTHING,
+        on_delete=models.CASCADE,
         db_column='human_ticket_info'
     )
 

@@ -111,5 +111,5 @@ BOOST_HEADERS = {'Authorization': f"Token {getenv('BOOST_TOKEN')}"}
 BOOST_REDIRECT = 'https://boostbank.ru/payment/{id}'
 BOOST_ACCOUNT = 'ab0f0ccf-1e19-4e35-a84b-addc3753f4c0'
 STATIC_THANKS = 'http://84.252.75.29:8000/succesessful'
-BOOST_CALLBACK_URL = 'http://84.252.75.29:8000/rest/Ticket/{id}/'
+BOOST_CALLBACK_URL = 'http://84.252.75.29:8000/rest/HumanTicket/{id}/'
 BOOST_CALLBACK_HEADERS = {'Authorization': f"Token {getenv('BOOST_CALLBACK_TOKEN')}"}
