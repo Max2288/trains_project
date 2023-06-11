@@ -9,7 +9,6 @@ from django.shortcuts import redirect, render
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_protect
 from rest_framework import permissions, viewsets
-
 from tickets.config import *
 from tickets.forms import RegistrationForm, TicketSearchForm, TrainSeatForm
 from tickets.models import *

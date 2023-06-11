@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from tickets import models
 
 admin.site.register(models.AdditionalService)

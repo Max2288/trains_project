@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
-
 from tickets import models
 
 
