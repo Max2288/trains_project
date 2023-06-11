@@ -220,7 +220,7 @@ class MainLogicTests(StaticLiveServerTestCase):
             '#id_departure_date'
         )
         departure_date_input.click()
-        departure_date_input.send_keys(datetime.today().strftime('%d%m%Y'))
+        departure_date_input.send_keys(datetime.today().strftime('%m%d%Y'))
         self.try_click(
             self.selenium,
             By.CSS_SELECTOR,
