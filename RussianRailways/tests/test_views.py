@@ -10,13 +10,12 @@ from rest_framework.status import HTTP_200_OK as OK
 from django.contrib.auth.models import User
 from django.test.client import Client
 from string import ascii_lowercase as letters
-from time import sleep
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.common.by import By
 from datetime import datetime
 from tickets.config import SELENIUM_EXPEREMENTAL_OPTIONS, SELENIUM_OPTIONS
 from selenium.webdriver.chrome.options import Options
-
+from loguru import logger
 
 def create_view_tests(url, page_name, template):
     class ViewTests(TestCase):
@@ -227,6 +226,10 @@ class MainLogicTests(StaticLiveServerTestCase):
             By.CSS_SELECTOR,
             "#find_routes"
         )
+        logger.debug(self.first_station.name)
+        logger.debug(self.second_station.name)
+        logger.debug(self.route)
+        logger.debug(self.route_part)
         self.try_click(
             self.selenium,
             By.ID,
