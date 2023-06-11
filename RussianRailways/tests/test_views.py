@@ -113,6 +113,7 @@ class MainLogicTests(StaticLiveServerTestCase):
         self.number = '79102884597'
         self.passport_data = '4219 874120'
         self.route = Route.objects.create(name='Тестовая поездка')
+        self.timezone = pytz.timezone('Europe/Moscow')
         self.railwaycarriage = RailwayCarriage.objects.create(
             type='Купе',
             number_of_seats=20,
@@ -132,8 +133,8 @@ class MainLogicTests(StaticLiveServerTestCase):
             start=self.first_station,
             stop_uuid=self.second_station,
             route_uuid=self.route,
-            departure=datetime.today(),
-            arrival=datetime.today(),
+            departure=datetime.now(tz=self.timezone),
+            arrival=datetime.now(tz=self.timezone),
             order=1
         )
 
@@ -220,8 +221,7 @@ class MainLogicTests(StaticLiveServerTestCase):
             '#id_departure_date'
         )
         departure_date_input.click()
-        timezone = pytz.timezone('Europe/Moscow')
-        departure_date_input.send_keys(datetime.today().astimezone(timezone).strftime('%d%m%Y'))
+        departure_date_input.send_keys(datetime.now(tz=self.timezone).strftime('%d%m%Y'))
         self.try_click(
             self.selenium,
             By.CSS_SELECTOR,
