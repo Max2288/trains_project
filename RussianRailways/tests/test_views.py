@@ -201,13 +201,11 @@ class MainLogicTests(StaticLiveServerTestCase):
                             )
         self.check_login('231321231', '321321321')
         self.check_login(self.name, self.password)
-        sleep(2)
-        btn = WebDriverWait(self.selenium, 10).until(
-            EC.element_to_be_clickable(
-                (By.CSS_SELECTOR, 'body > header > div.logo > a > img'),
-            ),
+        self.try_click(
+            self.selenium,
+            By.CSS_SELECTOR,
+            'body > header > div.logo > a > img'
         )
-        self.selenium.execute_script("arguments[0].click();", btn)
         departure_city_input = self.selenium.find_element(
             By.CSS_SELECTOR,
             "#id_departure_city"
@@ -280,7 +278,6 @@ class MainLogicTests(StaticLiveServerTestCase):
             By.CLASS_NAME,
             'btn'
         )
-        sleep(2)
         self.check_register(
             self.name,
             self.email,
