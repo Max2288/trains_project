@@ -230,6 +230,7 @@ class MainLogicTests(StaticLiveServerTestCase):
         logger.debug(self.second_station.name)
         logger.debug(self.route)
         logger.debug(self.route_part)
+        logger.debug(self.selenium.current_url)
         self.try_click(
             self.selenium,
             By.ID,
