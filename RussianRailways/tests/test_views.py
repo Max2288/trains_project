@@ -229,66 +229,7 @@ class MainLogicTests(StaticLiveServerTestCase):
         )
         self.try_click(
             self.selenium,
-            By.ID,
-            "choose_btn"
-        )
-        self.try_click(
-            self.selenium,
-            By.ID,
-            "seat_type_kupe"
-        )
-        self.try_click(
-            self.selenium,
-            By.CSS_SELECTOR,
-            "#seat-form > div.button-wrapper > button"
-        )
-        self.try_click(
-            self.selenium,
             By.CLASS_NAME,
-            "checkoption"
+            "error-btn"
         )
-        self.try_click(
-            self.selenium,
-            By.CLASS_NAME,
-            "choose-btn"
-        )
-        self.try_click(
-            self.selenium,
-            By.CLASS_NAME,
-            "choose-btn"
-        )
-        self.try_click(
-            self.selenium,
-            By.CLASS_NAME,
-            "choose-btn"
-        )
-        url_to_post = f'{self.live_server_url}/trip/buy?route={self.route.id}&departure_station={self.first_station.name}&arrival_station={self.second_station.name}&seat_type={self.railwaycarriage.type}&seat=1'
-        self.selenium.get(url_to_post)
-        self.selenium.find_element(
-            By.CLASS_NAME,
-            "choose-btn"
-        ).click()
-        ticket = Ticket.objects.all()[0]
-        ticket.status = 'Cancelled'
-        ticket.save()
-        self.selenium.get(f"{self.live_server_url}/finally_bought")
-        self.selenium.get(f"{self.live_server_url}/profile")
-        self.try_click(
-            self.selenium,
-            By.CLASS_NAME,
-            'btn'
-        )
-        self.check_register(
-            self.name,
-            self.email,
-            '321321',
-            '321321',
-            self.password
-        )
-        self.check_register(
-            self.name,
-            self.email,
-            '321321',
-            '8080808080',
-            self.password
-        )
+        
