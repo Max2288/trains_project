@@ -216,4 +216,7 @@ class MainLogicTests(StaticLiveServerTestCase):
         departure_date_input = self.selenium.find_element(
             By.CSS_SELECTOR, '#id_departure_date')
         departure_date_input.click()
+        departure_date_input.send_keys(datetime.today().strftime('%d%m%Y'))
+        self.selenium.find_element(By.CSS_SELECTOR, "#find_routes").click()
+        self.selenium.find_element(By.ID, "choose_btn").click()
         
