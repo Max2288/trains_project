@@ -155,6 +155,13 @@ class MainLogicTests(StaticLiveServerTestCase):
         cls.selenium.quit()
         super().tearDownClass()
 
+    @staticmethod
+    def try_click(driver, by, locator):
+        btn = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((by, locator))
+        )
+        driver.execute_script("arguments[0].click();", btn)
+
     def check_register(self, name, email, number, passport_data, password):
         self.selenium.get(f"{self.live_server_url}/register")
         username_input = self.selenium.find_element(By.NAME, "username")
@@ -217,38 +224,46 @@ class MainLogicTests(StaticLiveServerTestCase):
         )
         departure_date_input.click()
         departure_date_input.send_keys(datetime.today().strftime('%d%m%Y'))
-        self.selenium.find_element(
+        self.try_click(
+            self.selenium,
             By.CSS_SELECTOR,
             "#find_routes"
-        ).click()
-        self.selenium.find_element(
+        )
+        self.try_click(
+            self.selenium,
             By.ID,
             "choose_btn"
-        ).click()
-        self.selenium.find_element(
+        )
+        self.try_click(
+            self.selenium,
             By.ID,
             "seat_type_kupe"
-        ).click()
-        self.selenium.find_element(
+        )
+        self.try_click(
+            self.selenium,
             By.CSS_SELECTOR,
             "#seat-form > div.button-wrapper > button"
-        ).click()
-        self.selenium.find_element(
+        )
+        self.try_click(
+            self.selenium,
             By.CLASS_NAME,
             "checkoption"
-        ).click()
-        self.selenium.find_element(
+        )
+        self.try_click(
+            self.selenium,
             By.CLASS_NAME,
             "choose-btn"
-        ).click()
-        self.selenium.find_element(
+        )
+        self.try_click(
+            self.selenium,
             By.CLASS_NAME,
             "choose-btn"
-        ).click()
-        self.selenium.find_element(
+        )
+        self.try_click(
+            self.selenium,
             By.CLASS_NAME,
             "choose-btn"
-        ).click()
+        )
         url_to_post = f'{self.live_server_url}/trip/buy?route={self.route.id}&departure_station={self.first_station.name}&arrival_station={self.second_station.name}&seat_type={self.railwaycarriage.type}&seat=1'
         self.selenium.get(url_to_post)
         self.selenium.find_element(
@@ -260,10 +275,11 @@ class MainLogicTests(StaticLiveServerTestCase):
         ticket.save()
         self.selenium.get(f"{self.live_server_url}/finally_bought")
         self.selenium.get(f"{self.live_server_url}/profile")
-        self.selenium.find_element(
+        self.try_click(
+            self.selenium,
             By.CLASS_NAME,
             'btn'
-        ).click()
+        )
         sleep(2)
         self.check_register(
             self.name,
