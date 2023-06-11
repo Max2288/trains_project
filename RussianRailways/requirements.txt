@@ -28,4 +28,3 @@ selenium==4.9.1
 load-dotenv==0.1.0
 djangorestframework-gis==1.0
 loguru==0.7.0
-pytz==2022.1
