@@ -208,16 +208,16 @@ class MainLogicTests(StaticLiveServerTestCase):
         btn = WebDriverWait(self.selenium, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'body > header > div.logo > a > img')))
         self.selenium.execute_script("arguments[0].click();", btn)
         departure_city_input = self.selenium.find_element(
-            By.NAME, "departure_city")
+            By.CSS_SELECTOR, "#id_departure_city")
         departure_city_input.send_keys(self.first_station.name)
         arrival_city_input = self.selenium.find_element(
-            By.NAME, "arrival_city")
+            By.CSS_SELECTOR, "#id_arrival_city")
         arrival_city_input.send_keys(self.second_station.name)
         departure_date_input = self.selenium.find_element(
-            By.NAME, "departure_date")
+            By.CSS_SELECTOR, '#id_departure_date')
         departure_date_input.click()
         departure_date_input.send_keys(datetime.today().strftime('%d%m%Y'))
-        self.selenium.find_element(By.CLASS_NAME, "find-routes").click()
+        self.selenium.find_element(By.CSS_SELECTOR, "#find_routes").click()
         btn = WebDriverWait(self.selenium, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "body > label > div:nth-child(3) > button")))
         self.selenium.execute_script("arguments[0].click();", btn)
         self.selenium.find_element(By.ID, "seat_type_kupe").click()
