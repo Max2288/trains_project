@@ -1,10 +1,9 @@
-from django.test import TestCase, LiveServerTestCase
+from django.test import TestCase
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.options import Options
 from tickets.models import *
 from django.urls import reverse
 from rest_framework.status import HTTP_200_OK as OK
@@ -17,6 +16,7 @@ from selenium.webdriver.common.by import By
 from datetime import datetime
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
+from django.db import models
 
 
 def create_view_tests(url, page_name, template):
@@ -154,10 +154,7 @@ class MainLogicTests(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        options = Options()
-        options.add_argument('--headless')
-        options.add_argument('--disable-gpu')
-        cls.selenium = webdriver.Chrome(chrome_options=options)
+        cls.selenium = webdriver.Chrome()
         cls.selenium.implicitly_wait(10)
 
     @classmethod
@@ -201,9 +198,8 @@ class MainLogicTests(StaticLiveServerTestCase):
         self.check_login('231321231', '321321321')
         self.check_login(self.name, self.password)
         sleep(2)
-        btn = WebDriverWait(self.selenium, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'logo')))
+        btn = WebDriverWait(self.selenium, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'body > header > div.logo > a > img')))
         self.selenium.execute_script("arguments[0].click();", btn)
-        sleep(3)
         departure_city_input = self.selenium.find_element(
             By.NAME, "departure_city")
         departure_city_input.send_keys(self.first_station.name)

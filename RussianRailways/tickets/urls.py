@@ -1,7 +1,7 @@
-from django.urls import path, include
-from . import views
+from django.urls import include, path
 from rest_framework import routers
 
+from tickets import views
 
 router = routers.DefaultRouter()
 router.register(r'RoutePart', views.RoutePartViewSet)
@@ -21,7 +21,7 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('login', views.login_view, name='login'),
     path('profile', views.profile, name='profile'),
-    path('logout/',  views.logout_view, name='logout'),
+    path('logout/', views.logout_view, name='logout'),
     path('contacts', views.contacts, name='contacts'),
     path('trip/seats', views.seats, name='seats'),
     path('trip/boarding', views.passenger_info, name='ps_inf'),
@@ -30,4 +30,4 @@ urlpatterns = [
     path('succesessful', views.succesessful, name='succesessful'),
     path('wrong', views.wrong, name='wrong'),
     path('rest/', include(router.urls)),
-] 
+]

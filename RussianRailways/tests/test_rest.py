@@ -8,6 +8,7 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 import json
 from datetime import datetime
+from django.db import models
 
 
 def create_viewset_tests(

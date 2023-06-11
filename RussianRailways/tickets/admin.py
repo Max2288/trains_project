@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .models import AdditionalService, HumanTicket, Passenger, RailwayCarriage, RailwayStation, RoutePart, Route, Ticket
 
+from tickets import models
 
-admin.site.register(AdditionalService)
-admin.site.register(HumanTicket)
-admin.site.register(Passenger)
-admin.site.register(RailwayCarriage)
-admin.site.register(RailwayStation)
-admin.site.register(RoutePart)
-admin.site.register(Route)
-admin.site.register(Ticket)
+admin.site.register(models.AdditionalService)
+admin.site.register(models.HumanTicket)
+admin.site.register(models.Passenger)
+admin.site.register(models.RailwayCarriage)
+admin.site.register(models.RailwayStation)
+admin.site.register(models.RoutePart)
+admin.site.register(models.Route)
+admin.site.register(models.Ticket)
