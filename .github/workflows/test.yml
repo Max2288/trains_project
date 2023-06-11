@@ -39,4 +39,6 @@ jobs:
     - name: Тесты django views
       run: |
         cd RussianRailways
+        python3 manage.py makemigrations tickets
+        python3 manage.py migrate
         python3 manage.py test tests
