@@ -14,8 +14,6 @@ from time import sleep
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.common.by import By
 from datetime import datetime
-from rest_framework.authtoken.models import Token
-from rest_framework.test import APIClient
 from tickets.config import SELENIUM_EXPEREMENTAL_OPTIONS, SELENIUM_OPTIONS
 from selenium.webdriver.chrome.options import Options
 
@@ -139,18 +137,6 @@ class MainLogicTests(StaticLiveServerTestCase):
             arrival=datetime.now(),
             order=1
         )
-        self.user = User.objects.create_user(
-            is_superuser=True,
-            id=1,
-            username='test',
-            first_name='test',
-            last_name='test',
-            email='test@mail.ru',
-            password='test'
-        )
-        token = Token.objects.create(user=self.user)
-        self.client = APIClient()
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
 
     @classmethod
     def setUpClass(cls):
@@ -200,23 +186,96 @@ class MainLogicTests(StaticLiveServerTestCase):
         self.selenium.find_element(By.CLASS_NAME, 'btn').click()
 
     def test_main_logic(self):
-        self.check_register(self.name, self.email, self.number,
-                            self.passport_data, self.password)
+        self.check_register(self.name,
+                            self.email,
+                            self.number,
+                            self.passport_data,
+                            self.password,
+                            )
         self.check_login('231321231', '321321321')
         self.check_login(self.name, self.password)
         sleep(2)
-        btn = WebDriverWait(self.selenium, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'body > header > div.logo > a > img')))
+        btn = WebDriverWait(self.selenium, 10).until(
+            EC.element_to_be_clickable(
+                (By.CSS_SELECTOR, 'body > header > div.logo > a > img'),
+            ),
+        )
         self.selenium.execute_script("arguments[0].click();", btn)
         departure_city_input = self.selenium.find_element(
-            By.CSS_SELECTOR, "#id_departure_city")
+            By.CSS_SELECTOR,
+            "#id_departure_city"
+        )
         departure_city_input.send_keys(self.first_station.name)
         arrival_city_input = self.selenium.find_element(
-            By.CSS_SELECTOR, "#id_arrival_city")
+            By.CSS_SELECTOR,
+            "#id_arrival_city"
+        )
         arrival_city_input.send_keys(self.second_station.name)
         departure_date_input = self.selenium.find_element(
-            By.CSS_SELECTOR, '#id_departure_date')
+            By.CSS_SELECTOR,
+            '#id_departure_date'
+        )
         departure_date_input.click()
         departure_date_input.send_keys(datetime.today().strftime('%d%m%Y'))
-        self.selenium.find_element(By.CSS_SELECTOR, "#find_routes").click()
-        self.selenium.find_element(By.ID, "choose_btn").click()
-        
+        self.selenium.find_element(
+            By.CSS_SELECTOR,
+            "#find_routes"
+        ).click()
+        self.selenium.find_element(
+            By.ID,
+            "choose_btn"
+        ).click()
+        self.selenium.find_element(
+            By.ID,
+            "seat_type_kupe"
+        ).click()
+        self.selenium.find_element(
+            By.CSS_SELECTOR,
+            "#seat-form > div.button-wrapper > button"
+        ).click()
+        self.selenium.find_element(
+            By.CLASS_NAME,
+            "checkoption"
+        ).click()
+        self.selenium.find_element(
+            By.CLASS_NAME,
+            "choose-btn"
+        ).click()
+        self.selenium.find_element(
+            By.CLASS_NAME,
+            "choose-btn"
+        ).click()
+        self.selenium.find_element(
+            By.CLASS_NAME,
+            "choose-btn"
+        ).click()
+        url_to_post = f'{self.live_server_url}/trip/buy?route={self.route.id}&departure_station={self.first_station.name}&arrival_station={self.second_station.name}&seat_type={self.railwaycarriage.type}&seat=1'
+        self.selenium.get(url_to_post)
+        self.selenium.find_element(
+            By.CLASS_NAME,
+            "choose-btn"
+        ).click()
+        ticket = Ticket.objects.all()[0]
+        ticket.status = 'Cancelled'
+        ticket.save()
+        self.selenium.get(f"{self.live_server_url}/finally_bought")
+        self.selenium.get(f"{self.live_server_url}/profile")
+        self.selenium.find_element(
+            By.CLASS_NAME,
+            'btn'
+        ).click()
+        sleep(2)
+        self.check_register(
+            self.name,
+            self.email,
+            '321321',
+            '321321',
+            self.password
+        )
+        self.check_register(
+            self.name,
+            self.email,
+            '321321',
+            '8080808080',
+            self.password
+        )
