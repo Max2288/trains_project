@@ -113,3 +113,16 @@ BOOST_ACCOUNT = 'ab0f0ccf-1e19-4e35-a84b-addc3753f4c0'
 STATIC_THANKS = 'http://84.252.75.29:8000/succesessful'
 BOOST_CALLBACK_URL = 'http://84.252.75.29:8000/rest/HumanTicket/{id}/'
 BOOST_CALLBACK_HEADERS = {'Authorization': f"Token {getenv('BOOST_CALLBACK_TOKEN')}"}
+
+
+SELENIUM_OPTIONS = [
+    '--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+    '--disable-dev-shm-usage',
+    '--disable-blink-features=AutomationControlled',
+    'disable-infobars',
+    '--headless'
+]
+SELENIUM_EXPEREMENTAL_OPTIONS = [
+    ("excludeSwitches", ["enable-automation"]),
+    ('useAutomationExtension', False)
+]

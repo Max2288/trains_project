@@ -16,7 +16,8 @@ from selenium.webdriver.common.by import By
 from datetime import datetime
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APIClient
-from django.db import models
+from tickets.config import SELENIUM_EXPEREMENTAL_OPTIONS, SELENIUM_OPTIONS
+from selenium.webdriver.chrome.options import Options
 
 
 def create_view_tests(url, page_name, template):
@@ -154,7 +155,13 @@ class MainLogicTests(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.selenium = webdriver.Chrome()
+        options = Options()
+        for option in SELENIUM_OPTIONS:
+            options.add_argument(option)
+        for option in SELENIUM_EXPEREMENTAL_OPTIONS:
+            options.add_experimental_option(*option)
+        cls.selenium = webdriver.Chrome(options=options)
+        cls.selenium.maximize_window()
         cls.selenium.implicitly_wait(10)
 
     @classmethod
