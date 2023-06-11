@@ -15,7 +15,6 @@ from selenium.webdriver.common.by import By
 from datetime import datetime
 from tickets.config import SELENIUM_EXPEREMENTAL_OPTIONS, SELENIUM_OPTIONS
 from selenium.webdriver.chrome.options import Options
-from loguru import logger
 import pytz
 
 def create_view_tests(url, page_name, template):
@@ -221,24 +220,18 @@ class MainLogicTests(StaticLiveServerTestCase):
             '#id_departure_date'
         )
         departure_date_input.click()
-        timezone = pytz.timezone('America/New_York')
+        timezone = pytz.timezone('Europe/Moscow')
         departure_date_input.send_keys(datetime.today().astimezone(timezone).strftime('%d%m%Y'))
         self.try_click(
             self.selenium,
             By.CSS_SELECTOR,
             "#find_routes"
         )
-        logger.debug(self.first_station.name)
-        logger.debug(self.second_station.name)
-        logger.debug(self.route)
-        logger.debug(self.route_part)
-        logger.debug(self.selenium.current_url)
         self.try_click(
             self.selenium,
             By.ID,
             "choose_btn"
         )
-        logger.debug(self.selenium.current_url)
         self.try_click(
             self.selenium,
             By.ID,
