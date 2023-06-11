@@ -235,6 +235,7 @@ class MainLogicTests(StaticLiveServerTestCase):
             By.ID,
             "choose_btn"
         )
+        logger.debug(self.selenium.current_url)
         self.try_click(
             self.selenium,
             By.ID,
